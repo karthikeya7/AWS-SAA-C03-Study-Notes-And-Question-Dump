@@ -129,7 +129,7 @@ A company has a requirement that all IAM users must use Multi-Factor Authenticat
 A. Enable MFA Delete on the S3 bucket  
 B. Create an IAM policy with a condition requiring MFA  
 C. Use AWS Organizations Service Control Policies  
-D. Configure S3 bucket policy to require MFA  
+D. Enable AWS CloudTrail to log MFA usage before deletion  
 
 > [!success]- Show Answer
 > **Answer: B**
@@ -157,9 +157,9 @@ D. Configure S3 bucket policy to require MFA
 > }
 > ```
 >
-> - Option A: MFA Delete protects versioning but requires bucket owner MFA
-> - Option C: SCPs can enforce but IAM policy is more direct
-> - Option D: Can work but IAM policy is standard approach
+> - Option A: MFA Delete only protects object *versions* in a versioned bucket, and can only be toggled by the bucket owner's root account with an MFA device — it doesn't scale to enforcing MFA per IAM user
+> - Option C: SCPs only set a maximum permission boundary — they never grant access on their own, so an SCP alone can't "enforce" this without a separate underlying Allow policy carrying the same condition
+> - Option D: CloudTrail only **logs** that a deletion happened (and whether MFA was present) — it doesn't **block** the deletion. Enforcement requires a policy condition, not a log
 >
 > **References:** IAM Policy Conditions, MFA with IAM Policies
 
