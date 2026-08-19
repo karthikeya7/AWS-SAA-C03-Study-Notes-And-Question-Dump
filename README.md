@@ -12,7 +12,7 @@
 
 **A comprehensive, free, and open-source study guide for the AWS Certified Solutions Architect – Associate (SAA-C03) certification exam.**
 
-[🌐 Interactive Study Site](https://chathurangavkd.github.io/AWS-Certified-Solutions-Architect-Associate-SAA-C03/) • [🚀 Ultra-Fast (3–4 hrs)](docs/study-guides/ULTRA-FAST-LEARNING-INDEX.md) • [⚡ Fast-Learn (11–14 hrs)](docs/reference/QUICK-START.md) • [📊 Visual Diagrams](docs/reference/DIAGRAMS-INDEX.md) • [📚 Get Started](#-quick-start)
+[🌐 Interactive Study Site](https://karthikeya7.github.io/AWS-SAA-C03-Study-Notes-And-Question-Dump/) • [🚀 Ultra-Fast (3–4 hrs)](docs/study-guides/ULTRA-FAST-LEARNING-INDEX.md) • [⚡ Fast-Learn (11–14 hrs)](docs/reference/QUICK-START.md) • [📊 Visual Diagrams](docs/reference/DIAGRAMS-INDEX.md) • [📚 Get Started](#-quick-start)
 
 ---
 
@@ -20,7 +20,7 @@
 
 > Browse all 14 modules with search, learning path cards, exam domain breakdown and score tracker — all in one place.
 >
-> **👉 [Open Interactive Study Site →](https://chathurangavkd.github.io/AWS-Certified-Solutions-Architect-Associate-SAA-C03/)**
+> **👉 [Open Interactive Study Site →](https://karthikeya7.github.io/AWS-SAA-C03-Study-Notes-And-Question-Dump/)**
 >
 > `sidebar navigation` · `live search` · `learning path cards` · `exam domain breakdown` · `practice score tracker`
 
@@ -172,7 +172,7 @@ A curated set of resources to support every stage of your preparation:
 
 | Resource | Est. Time | Description | Best For |
 |----------|-----------|-------------|----------|
-| [🌐 Interactive Study Site](https://chathurangavkd.github.io/AWS-Certified-Solutions-Architect-Associate-SAA-C03/) | — | Web UI with search, module cards, navigation & score tracker | All learners |
+| [🌐 Interactive Study Site](https://karthikeya7.github.io/AWS-SAA-C03-Study-Notes-And-Question-Dump/) | — | Web UI with search, module cards, navigation & score tracker | All learners |
 | [🎯 Exam Day Cheat Sheet](exam-reviews/quick-reference/ULTRA-QUICK-REFERENCE-CARD.md) | 30 min | 150+ edge cases, 15 critical rules, exam strategies | Final review / Exam day |
 | [🚀 Ultra-Fast Index](docs/study-guides/ULTRA-FAST-LEARNING-INDEX.md) | 3–4 hrs | Highly condensed bullet summaries | Last-minute cramming |
 | [⚡ Fast-Learn Guide](docs/study-guides/FAST-LEARN-GUIDE.md) | 11–14 hrs | Condensed essentials with decision trees | Quick preparation |
