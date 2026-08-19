@@ -14,21 +14,18 @@ B. Install the CloudWatch Agent on EC2 instances, configure it to send memory me
 C. Use AWS Systems Manager Session Manager to view memory metrics and manually create alerts  
 D. Enable CloudTrail logging and use CloudWatch Logs Insights to query memory usage  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- EC2 instances do NOT send memory metrics by default
-- The CloudWatch Agent must be installed to collect memory metrics
-- Once the agent sends metrics to CloudWatch, you can create alarms
-- Option A is incorrect because memory is not a default metric
-- Option C doesn't provide automated alerting
-- Option D is for auditing API calls, not performance metrics
-
-**References:** CloudWatch Agent, EC2 Monitoring, Custom Metrics
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - EC2 instances do NOT send memory metrics by default
+> - The CloudWatch Agent must be installed to collect memory metrics
+> - Once the agent sends metrics to CloudWatch, you can create alarms
+> - Option A is incorrect because memory is not a default metric
+> - Option C doesn't provide automated alerting
+> - Option D is for auditing API calls, not performance metrics
+>
+> **References:** CloudWatch Agent, EC2 Monitoring, Custom Metrics
 
 ---
 
@@ -40,21 +37,18 @@ B. AWS Config
 C. AWS CloudTrail  
 D. AWS Systems Manager  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- CloudTrail records API calls including WHO made them
-- It tracks management events like TerminateInstances
-- CloudTrail logs include user identity, timestamp, and action
-- Option A (CloudWatch Logs) monitors application logs, not API calls
-- Option B (Config) tracks resource configuration, not who made changes
-- Option D (Systems Manager) is for operational management
-
-**References:** CloudTrail, API Call Auditing, Governance
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - CloudTrail records API calls including WHO made them
+> - It tracks management events like TerminateInstances
+> - CloudTrail logs include user identity, timestamp, and action
+> - Option A (CloudWatch Logs) monitors application logs, not API calls
+> - Option B (Config) tracks resource configuration, not who made changes
+> - Option D (Systems Manager) is for operational management
+>
+> **References:** CloudTrail, API Call Auditing, Governance
 
 ---
 
@@ -66,21 +60,18 @@ B. Amazon CloudWatch with custom metrics
 C. AWS Config with AWS Managed Rules  
 D. AWS Systems Manager State Manager  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- AWS Config evaluates resource configurations against rules
-- Managed rule `s3-bucket-versioning-enabled` checks versioning
-- Config can send SNS notifications when non-compliant
-- CloudTrail tracks who made changes but doesn't evaluate compliance
-- CloudWatch monitors performance metrics, not configuration compliance
-- Systems Manager State Manager is for EC2 instance configuration
-
-**References:** AWS Config, Config Rules, Compliance Auditing
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - AWS Config evaluates resource configurations against rules
+> - Managed rule `s3-bucket-versioning-enabled` checks versioning
+> - Config can send SNS notifications when non-compliant
+> - CloudTrail tracks who made changes but doesn't evaluate compliance
+> - CloudWatch monitors performance metrics, not configuration compliance
+> - Systems Manager State Manager is for EC2 instance configuration
+>
+> **References:** AWS Config, Config Rules, Compliance Auditing
 
 ---
 
@@ -92,21 +83,18 @@ B. AWS Systems Manager Session Manager
 C. Amazon EC2 Instance Connect  
 D. AWS Direct Connect  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Session Manager provides secure shell access without SSH keys or open ports
-- Uses IAM permissions for access control
-- Session logs can be sent to S3 or CloudWatch Logs
-- EC2 Instance Connect still requires port 22 to be open
-- CloudShell is for running AWS CLI commands, not accessing instances
-- Direct Connect is for network connectivity
-
-**References:** Systems Manager Session Manager, Secure Access
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Session Manager provides secure shell access without SSH keys or open ports
+> - Uses IAM permissions for access control
+> - Session logs can be sent to S3 or CloudWatch Logs
+> - EC2 Instance Connect still requires port 22 to be open
+> - CloudShell is for running AWS CLI commands, not accessing instances
+> - Direct Connect is for network connectivity
+>
+> **References:** Systems Manager Session Manager, Secure Access
 
 ---
 
@@ -118,21 +106,18 @@ B. AWS Systems Manager Patch Manager
 C. Amazon EventBridge with Lambda  
 D. AWS Config with remediation actions  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Patch Manager automates OS and application patching
-- Maintenance windows define when to patch
-- Patch baselines specify which patches to install
-- CloudFormation is for infrastructure as code, not patching
-- EventBridge could trigger patching but isn't purpose-built
-- Config evaluates compliance but doesn't patch
-
-**References:** Systems Manager Patch Manager, Maintenance Windows
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Patch Manager automates OS and application patching
+> - Maintenance windows define when to patch
+> - Patch baselines specify which patches to install
+> - CloudFormation is for infrastructure as code, not patching
+> - EventBridge could trigger patching but isn't purpose-built
+> - Config evaluates compliance but doesn't patch
+>
+> **References:** Systems Manager Patch Manager, Maintenance Windows
 
 ---
 
@@ -144,22 +129,19 @@ B. Create a metric filter to count "ERROR" occurrences, then create an alarm on 
 C. Export logs to S3 and use Athena to query for errors  
 D. Use CloudTrail to track error events and create SNS notifications  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Metric filters extract metrics from log data
-- Filter pattern can count occurrences of "ERROR"
-- CloudWatch alarm can trigger on the custom metric
-- This provides automated, real-time alerting
-- Option A requires manual intervention
-- Option C adds unnecessary complexity and isn't real-time
-- CloudTrail is for API calls, not application logs
-
-**References:** CloudWatch Logs, Metric Filters, CloudWatch Alarms
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Metric filters extract metrics from log data
+> - Filter pattern can count occurrences of "ERROR"
+> - CloudWatch alarm can trigger on the custom metric
+> - This provides automated, real-time alerting
+> - Option A requires manual intervention
+> - Option C adds unnecessary complexity and isn't real-time
+> - CloudTrail is for API calls, not application logs
+>
+> **References:** CloudWatch Logs, Metric Filters, CloudWatch Alarms
 
 ---
 
@@ -171,21 +153,18 @@ B. Create Lambda functions to monitor security group changes
 C. Use AWS Config with a Config Aggregator  
 D. Use CloudWatch Events in each region  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- AWS Config records resource configuration changes
-- Config Aggregator provides centralized view across accounts and regions
-- Tracks configuration history and relationships
-- CloudTrail tracks who made changes but doesn't aggregate configurations
-- Lambda would require custom development and maintenance
-- CloudWatch Events could detect changes but doesn't provide historical tracking
-
-**References:** AWS Config, Config Aggregator, Multi-Account Management
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - AWS Config records resource configuration changes
+> - Config Aggregator provides centralized view across accounts and regions
+> - Tracks configuration history and relationships
+> - CloudTrail tracks who made changes but doesn't aggregate configurations
+> - Lambda would require custom development and maintenance
+> - CloudWatch Events could detect changes but doesn't provide historical tracking
+>
+> **References:** AWS Config, Config Aggregator, Multi-Account Management
 
 ---
 
@@ -197,22 +176,19 @@ B. AWS Lambda with EC2 API
 C. Amazon CloudWatch Events  
 D. AWS Config Remediation  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: A**
-
-**Explanation:**
-- Run Command executes commands on managed instances remotely
-- No SSH required, uses IAM permissions
-- Provides rate control and error handling
-- Command history recorded in CloudTrail
-- Lambda could invoke Run Command but isn't the direct solution
-- CloudWatch Events can trigger Run Command but isn't the execution service
-- Config Remediation uses SSM Automation Documents
-
-**References:** Systems Manager Run Command, Fleet Management
-</details>
+> [!success]- Show Answer
+> **Answer: A**
+>
+> **Explanation:**
+> - Run Command executes commands on managed instances remotely
+> - No SSH required, uses IAM permissions
+> - Provides rate control and error handling
+> - Command history recorded in CloudTrail
+> - Lambda could invoke Run Command but isn't the direct solution
+> - CloudWatch Events can trigger Run Command but isn't the execution service
+> - Config Remediation uses SSM Automation Documents
+>
+> **References:** Systems Manager Run Command, Fleet Management
 
 ---
 
@@ -224,20 +200,17 @@ B. CloudTrail Management Events
 C. CloudTrail Insights Events  
 D. CloudTrail Multi-Region Trails  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- CloudTrail Insights uses machine learning to detect unusual activity
-- Identifies anomalies like spikes in resource provisioning or IAM actions
-- Management Events track API calls but don't detect anomalies
-- Data Events track high-volume operations (S3 objects, Lambda invocations)
-- Multi-Region Trails collect logs but don't analyze patterns
-
-**References:** CloudTrail Insights, Anomaly Detection
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - CloudTrail Insights uses machine learning to detect unusual activity
+> - Identifies anomalies like spikes in resource provisioning or IAM actions
+> - Management Events track API calls but don't detect anomalies
+> - Data Events track high-volume operations (S3 objects, Lambda invocations)
+> - Multi-Region Trails collect logs but don't analyze patterns
+>
+> **References:** CloudTrail Insights, Anomaly Detection
 
 ---
 
@@ -249,20 +222,17 @@ B. Export logs to S3, then transition to S3 Glacier Deep Archive
 C. Export logs to S3, then use S3 Intelligent-Tiering  
 D. Stream logs to Kinesis Data Firehose and store in Redshift  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- CloudWatch Logs retention is expensive for long-term storage
-- Export to S3 for cost-effective long-term storage
-- S3 Glacier Deep Archive is cheapest for archival ($0.00099 per GB/month)
-- S3 Intelligent-Tiering is more expensive than Glacier Deep Archive
-- Redshift is for analytics, not cost-effective archival
-
-**References:** CloudWatch Logs Export, S3 Glacier Deep Archive, Cost Optimization
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - CloudWatch Logs retention is expensive for long-term storage
+> - Export to S3 for cost-effective long-term storage
+> - S3 Glacier Deep Archive is cheapest for archival ($0.00099 per GB/month)
+> - S3 Intelligent-Tiering is more expensive than Glacier Deep Archive
+> - Redshift is for analytics, not cost-effective archival
+>
+> **References:** CloudWatch Logs Export, S3 Glacier Deep Archive, Cost Optimization
 
 ---
 
@@ -274,21 +244,18 @@ B. CloudWatch Logs Insights
 C. CloudWatch Dashboards  
 D. CloudWatch Alarms  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- CloudWatch Logs Insights provides interactive log analytics
-- Purpose-built query language for searching and analyzing logs
-- Can find errors, count events, calculate percentiles
-- Metrics are for numerical performance data
-- Dashboards visualize but don't query
-- Alarms trigger on thresholds
-
-**References:** CloudWatch Logs Insights, Log Analytics
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - CloudWatch Logs Insights provides interactive log analytics
+> - Purpose-built query language for searching and analyzing logs
+> - Can find errors, count events, calculate percentiles
+> - Metrics are for numerical performance data
+> - Dashboards visualize but don't query
+> - Alarms trigger on thresholds
+>
+> **References:** CloudWatch Logs Insights, Log Analytics
 
 ---
 
@@ -300,21 +267,18 @@ B. CloudWatch Events with Lambda functions
 C. AWS CloudTrail with SNS notifications  
 D. Systems Manager State Manager  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: A**
-
-**Explanation:**
-- Config Rules evaluate compliance
-- Automatic remediation uses SSM Automation Documents
-- Can trigger remediation when resources become non-compliant
-- CloudWatch Events could work but Config is purpose-built for compliance
-- CloudTrail only tracks changes, doesn't remediate
-- State Manager maintains EC2 configuration, not S3
-
-**References:** AWS Config, Auto Remediation, SSM Automation
-</details>
+> [!success]- Show Answer
+> **Answer: A**
+>
+> **Explanation:**
+> - Config Rules evaluate compliance
+> - Automatic remediation uses SSM Automation Documents
+> - Can trigger remediation when resources become non-compliant
+> - CloudWatch Events could work but Config is purpose-built for compliance
+> - CloudTrail only tracks changes, doesn't remediate
+> - State Manager maintains EC2 configuration, not S3
+>
+> **References:** AWS Config, Auto Remediation, SSM Automation
 
 ---
 
@@ -326,23 +290,20 @@ B. AWS Systems Manager Parameter Store
 C. Amazon S3 with versioning  
 D. AWS Config  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Parameter Store securely stores configuration data and secrets
-- Supports encryption with KMS
-- Maintains version history
-- Integrates with EC2, Lambda, CloudFormation
-- Secrets Manager is also valid but more expensive (includes auto-rotation)
-- For exam context, Parameter Store is part of Systems Manager
-- S3 isn't designed for configuration management
-- Config is for compliance tracking
-
-**References:** Systems Manager Parameter Store, Secrets Management
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Parameter Store securely stores configuration data and secrets
+> - Supports encryption with KMS
+> - Maintains version history
+> - Integrates with EC2, Lambda, CloudFormation
+> - Secrets Manager is also valid but more expensive (includes auto-rotation)
+> - For exam context, Parameter Store is part of Systems Manager
+> - S3 isn't designed for configuration management
+> - Config is for compliance tracking
+>
+> **References:** Systems Manager Parameter Store, Secrets Management
 
 ---
 
@@ -354,19 +315,16 @@ B. Yes, CloudWatch dashboards support cross-region metrics
 C. Yes, but only with CloudWatch Logs, not metrics  
 D. Yes, but requires CloudWatch Events to aggregate data  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- CloudWatch dashboards support cross-region and cross-account views
-- Can add graphs from multiple regions to single dashboard
-- Global view of distributed applications
-- No additional aggregation service required
-
-**References:** CloudWatch Dashboards, Cross-Region Monitoring
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - CloudWatch dashboards support cross-region and cross-account views
+> - Can add graphs from multiple regions to single dashboard
+> - Global view of distributed applications
+> - No additional aggregation service required
+>
+> **References:** CloudWatch Dashboards, Cross-Region Monitoring
 
 ---
 
@@ -378,21 +336,18 @@ B. Systems Manager Inventory
 C. Systems Manager Patch Manager  
 D. Systems Manager Run Command  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Systems Manager Inventory collects metadata from managed instances
-- Gathers information about OS, applications, network config
-- Can query and visualize with Inventory dashboard
-- Session Manager is for shell access
-- Patch Manager is for patching
-- Run Command executes commands
-
-**References:** Systems Manager Inventory, Metadata Collection
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Systems Manager Inventory collects metadata from managed instances
+> - Gathers information about OS, applications, network config
+> - Can query and visualize with Inventory dashboard
+> - Session Manager is for shell access
+> - Patch Manager is for patching
+> - Run Command executes commands
+>
+> **References:** Systems Manager Inventory, Metadata Collection
 
 ---
 
@@ -404,21 +359,18 @@ B. CloudTrail Log File Integrity Validation
 C. CloudTrail Insights  
 D. CloudTrail Data Events  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Log File Integrity Validation uses digital signatures
-- Ensures logs haven't been modified after delivery
-- Required for compliance and forensic investigations
-- Multi-Region Trails enable logging across regions
-- Insights detect unusual activity
-- Data Events track resource operations
-
-**References:** CloudTrail, Log Integrity, Compliance
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Log File Integrity Validation uses digital signatures
+> - Ensures logs haven't been modified after delivery
+> - Required for compliance and forensic investigations
+> - Multi-Region Trails enable logging across regions
+> - Insights detect unusual activity
+> - Data Events track resource operations
+>
+> **References:** CloudTrail, Log Integrity, Compliance
 
 ---
 
@@ -430,20 +382,17 @@ B. Use CloudWatch Logs Subscriptions with Kinesis Data Streams
 C. Use CloudWatch Logs Insights with scheduled queries  
 D. Export logs to S3 and use Lambda  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- CloudWatch Logs Subscriptions enable real-time processing
-- Can send to Kinesis Data Streams for real-time analytics
-- Also supports Kinesis Data Firehose and Lambda
-- S3 export is not real-time (batch process)
-- Logs Insights is for ad-hoc queries, not streaming
-
-**References:** CloudWatch Logs Subscriptions, Real-Time Processing
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - CloudWatch Logs Subscriptions enable real-time processing
+> - Can send to Kinesis Data Streams for real-time analytics
+> - Also supports Kinesis Data Firehose and Lambda
+> - S3 export is not real-time (batch process)
+> - Logs Insights is for ad-hoc queries, not streaming
+>
+> **References:** CloudWatch Logs Subscriptions, Real-Time Processing
 
 ---
 
@@ -455,21 +404,18 @@ B. AWS Config only
 C. Both CloudTrail and Config  
 D. IAM Access Analyzer  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- CloudTrail shows WHO attached the policy and WHEN (API call details)
-- Config shows configuration history and timeline of changes
-- Both services complement each other for complete visibility
-- CloudTrail: "Who did what, when"
-- Config: "What does it look like now and over time"
-- IAM Access Analyzer analyzes resource policies for external access
-
-**References:** CloudTrail vs Config, Configuration History
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - CloudTrail shows WHO attached the policy and WHEN (API call details)
+> - Config shows configuration history and timeline of changes
+> - Both services complement each other for complete visibility
+> - CloudTrail: "Who did what, when"
+> - Config: "What does it look like now and over time"
+> - IAM Access Analyzer analyzes resource policies for external access
+>
+> **References:** CloudTrail vs Config, Configuration History
 
 ---
 
@@ -481,21 +427,18 @@ B. Systems Manager State Manager
 C. Systems Manager Automation  
 D. Systems Manager Patch Manager  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- State Manager maintains desired state configuration
-- Creates associations between documents and instances
-- Continuously enforces configuration
-- Run Command executes one-time commands
-- Automation runs workflows
-- Patch Manager handles patching
-
-**References:** Systems Manager State Manager, Configuration Management
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - State Manager maintains desired state configuration
+> - Creates associations between documents and instances
+> - Continuously enforces configuration
+> - Run Command executes one-time commands
+> - Automation runs workflows
+> - Patch Manager handles patching
+>
+> **References:** Systems Manager State Manager, Configuration Management
 
 ---
 
@@ -507,22 +450,19 @@ B. Use Amazon Athena to query CloudTrail logs in S3
 C. Use CloudTrail Lake to query logs with SQL  
 D. Import logs into Elasticsearch  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- CloudTrail Lake is purpose-built for querying CloudTrail logs
-- Uses SQL to query events
-- Can retain events for up to 7 years
-- Aggregates logs from multiple accounts/regions
-- Athena could work but CloudTrail Lake is optimized for this use case
-- Option A is inefficient and not scalable
-- Elasticsearch adds unnecessary complexity
-
-**References:** CloudTrail Lake, Log Query and Analysis
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - CloudTrail Lake is purpose-built for querying CloudTrail logs
+> - Uses SQL to query events
+> - Can retain events for up to 7 years
+> - Aggregates logs from multiple accounts/regions
+> - Athena could work but CloudTrail Lake is optimized for this use case
+> - Option A is inefficient and not scalable
+> - Elasticsearch adds unnecessary complexity
+>
+> **References:** CloudTrail Lake, Log Query and Analysis
 
 ---
 

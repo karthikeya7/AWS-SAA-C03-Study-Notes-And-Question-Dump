@@ -14,23 +14,20 @@ B. Serverless architecture with S3, CloudFront, API Gateway, Lambda, and DynamoD
 C. ECS containers on EC2 instances  
 D. EC2 instances with manual scaling  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Serverless architecture automatically scales and is pay-per-use
-- S3/CloudFront for static content
-- API Gateway/Lambda for compute (scales automatically)
-- DynamoDB for database (on-demand capacity)
-- Zero operational overhead for infrastructure
-- Option A requires some management and continuous costs
-- Option C requires container orchestration
-- Option D requires manual intervention
-
-**References:** Serverless Architecture, Auto Scaling
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Serverless architecture automatically scales and is pay-per-use
+> - S3/CloudFront for static content
+> - API Gateway/Lambda for compute (scales automatically)
+> - DynamoDB for database (on-demand capacity)
+> - Zero operational overhead for infrastructure
+> - Option A requires some management and continuous costs
+> - Option C requires container orchestration
+> - Option D requires manual intervention
+>
+> **References:** Serverless Architecture, Auto Scaling
 
 ---
 
@@ -42,22 +39,19 @@ B. Multi-AZ deployment with Auto Scaling and Application Load Balancer
 C. Cross-region replication with manual failover  
 D. Single region with daily snapshots  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Multi-AZ deployment provides automatic failover
-- ALB distributes traffic across AZs and health checks instances
-- Auto Scaling replaces failed instances automatically
-- Meets < 5 minute RTO requirement
-- Option A doesn't protect against AZ failure
-- Option C has longer RTO (manual failover)
-- Option D doesn't provide HA
-
-**References:** Multi-AZ Architecture, High Availability
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Multi-AZ deployment provides automatic failover
+> - ALB distributes traffic across AZs and health checks instances
+> - Auto Scaling replaces failed instances automatically
+> - Meets < 5 minute RTO requirement
+> - Option A doesn't protect against AZ failure
+> - Option C has longer RTO (manual failover)
+> - Option D doesn't provide HA
+>
+> **References:** Multi-AZ Architecture, High Availability
 
 ---
 
@@ -69,23 +63,20 @@ B. Warm standby
 C. Pilot light  
 D. Backup and restore  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- Pilot light maintains core services (like database replication)
-- RPO: Minutes (database replication lag)
-- RTO: Hours (time to scale up remaining services)
-- More cost-effective than warm standby
-- Meets the 1-hour RPO and 4-hour RTO requirements
-- Multi-site is expensive and over-engineered
-- Warm standby costs more than necessary
-- Backup and restore may not meet RPO/RTO
-
-**References:** Disaster Recovery Strategies, Pilot Light
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - Pilot light maintains core services (like database replication)
+> - RPO: Minutes (database replication lag)
+> - RTO: Hours (time to scale up remaining services)
+> - More cost-effective than warm standby
+> - Meets the 1-hour RPO and 4-hour RTO requirements
+> - Multi-site is expensive and over-engineered
+> - Warm standby costs more than necessary
+> - Backup and restore may not meet RPO/RTO
+>
+> **References:** Disaster Recovery Strategies, Pilot Light
 
 ---
 
@@ -97,22 +88,19 @@ B. Cache-aside (Lazy Loading) with ElastiCache
 C. Database connection pooling only  
 D. Increase database instance size  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Cache-aside pattern is ideal for read-heavy workloads
-- Application checks cache first, loads from DB if cache miss
-- ElastiCache (Redis/Memcached) reduces database load
-- Cost-effective solution
-- Write-through is better for write-heavy workloads
-- Connection pooling helps but doesn't cache data
-- Scaling database is more expensive
-
-**References:** Caching Strategies, ElastiCache
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Cache-aside pattern is ideal for read-heavy workloads
+> - Application checks cache first, loads from DB if cache miss
+> - ElastiCache (Redis/Memcached) reduces database load
+> - Cost-effective solution
+> - Write-through is better for write-heavy workloads
+> - Connection pooling helps but doesn't cache data
+> - Scaling database is more expensive
+>
+> **References:** Caching Strategies, ElastiCache
 
 ---
 
@@ -124,22 +112,19 @@ B. SQS queues between services
 C. Shared database between services  
 D. File-based communication via S3  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- SQS provides loose coupling and buffering between services
-- Messages are persisted, not lost during traffic spikes
-- Services process at their own pace
-- Standard microservices pattern
-- Direct API calls create tight coupling
-- Shared database violates microservices principles
-- S3 file-based communication is inefficient for real-time
-
-**References:** Microservices Architecture, SQS Decoupling
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - SQS provides loose coupling and buffering between services
+> - Messages are persisted, not lost during traffic spikes
+> - Services process at their own pace
+> - Standard microservices pattern
+> - Direct API calls create tight coupling
+> - Shared database violates microservices principles
+> - S3 file-based communication is inefficient for real-time
+>
+> **References:** Microservices Architecture, SQS Decoupling
 
 ---
 
@@ -151,22 +136,19 @@ B. Amazon SNS
 C. Amazon EventBridge  
 D. AWS Step Functions  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- EventBridge is an event bus for routing events
-- Supports multiple sources including AWS services and custom apps
-- Content-based filtering and routing
-- Built-in integration with 90+ AWS services
-- SQS is for point-to-point messaging
-- SNS is for pub/sub but limited filtering
-- Step Functions is for workflow orchestration
-
-**References:** Event-Driven Architecture, EventBridge
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - EventBridge is an event bus for routing events
+> - Supports multiple sources including AWS services and custom apps
+> - Content-based filtering and routing
+> - Built-in integration with 90+ AWS services
+> - SQS is for point-to-point messaging
+> - SNS is for pub/sub but limited filtering
+> - Step Functions is for workflow orchestration
+>
+> **References:** Event-Driven Architecture, EventBridge
 
 ---
 
@@ -178,22 +160,19 @@ B. Reserved Instances
 C. Spot Instances  
 D. Dedicated Hosts  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- Spot Instances can save up to 90% compared to On-Demand
-- Batch processing is fault-tolerant (can handle interruptions)
-- Can checkpoint progress and resume
-- Most cost-effective for this use case
-- On-Demand is more expensive
-- Reserved requires 1-3 year commitment
-- Dedicated Hosts are most expensive
-
-**References:** Cost Optimization, Spot Instances
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - Spot Instances can save up to 90% compared to On-Demand
+> - Batch processing is fault-tolerant (can handle interruptions)
+> - Can checkpoint progress and resume
+> - Most cost-effective for this use case
+> - On-Demand is more expensive
+> - Reserved requires 1-3 year commitment
+> - Dedicated Hosts are most expensive
+>
+> **References:** Cost Optimization, Spot Instances
 
 ---
 
@@ -205,21 +184,18 @@ B. DynamoDB with DAX (DynamoDB Accelerator)
 C. Amazon Aurora  
 D. Amazon Redshift  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- DAX provides microsecond latency for DynamoDB
-- In-memory cache specifically for DynamoDB
-- Key-value access pattern is perfect for DynamoDB
-- Meets sub-millisecond requirement
-- RDS/Aurora have millisecond latency
-- Redshift is for analytics, not operational workloads
-
-**References:** DynamoDB DAX, Low Latency
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - DAX provides microsecond latency for DynamoDB
+> - In-memory cache specifically for DynamoDB
+> - Key-value access pattern is perfect for DynamoDB
+> - Meets sub-millisecond requirement
+> - RDS/Aurora have millisecond latency
+> - Redshift is for analytics, not operational workloads
+>
+> **References:** DynamoDB DAX, Low Latency
 
 ---
 
@@ -231,22 +207,19 @@ B. S3 with CloudFront distribution
 C. S3 with Cross-Region Replication  
 D. ALB in multiple regions  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- CloudFront is a CDN with 400+ edge locations globally
-- Caches content close to users worldwide
-- S3 origin for static content
-- Lowest latency for global distribution
-- EC2 requires management and doesn't cache at edge
-- CRR helps availability but doesn't reduce latency
-- ALB doesn't provide edge caching
-
-**References:** CloudFront, Global Architecture
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - CloudFront is a CDN with 400+ edge locations globally
+> - Caches content close to users worldwide
+> - S3 origin for static content
+> - Lowest latency for global distribution
+> - EC2 requires management and doesn't cache at edge
+> - CRR helps availability but doesn't reduce latency
+> - ALB doesn't provide edge caching
+>
+> **References:** CloudFront, Global Architecture
 
 ---
 
@@ -258,22 +231,19 @@ B. All tiers in private subnets
 C. Presentation in public, application and database in private subnets  
 D. Presentation and application in public, database in private subnet  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- Presentation tier (web servers) needs internet access - public subnet
-- Application tier doesn't need direct internet access - private subnet
-- Database tier must be isolated - private subnet
-- Follows defense-in-depth security principle
-- Application tier accesses internet via NAT Gateway
-- Database has no internet access
-- Minimizes attack surface
-
-**References:** Three-Tier Architecture, Security Best Practices
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - Presentation tier (web servers) needs internet access - public subnet
+> - Application tier doesn't need direct internet access - private subnet
+> - Database tier must be isolated - private subnet
+> - Follows defense-in-depth security principle
+> - Application tier accesses internet via NAT Gateway
+> - Database has no internet access
+> - Minimizes attack surface
+>
+> **References:** Three-Tier Architecture, Security Best Practices
 
 ---
 
@@ -285,22 +255,19 @@ B. SNS with Lambda subscriptions
 C. AWS Step Functions  
 D. SQS with Lambda triggers  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- Step Functions orchestrates workflows with state machines
-- Built-in error handling and retry logic
-- Visual workflow designer
-- Integrates with Lambda and other AWS services
-- Best for complex, multi-step workflows
-- EventBridge routes events but doesn't orchestrate
-- SNS/SQS don't provide workflow orchestration
-
-**References:** Step Functions, Serverless Orchestration
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - Step Functions orchestrates workflows with state machines
+> - Built-in error handling and retry logic
+> - Visual workflow designer
+> - Integrates with Lambda and other AWS services
+> - Best for complex, multi-step workflows
+> - EventBridge routes events but doesn't orchestrate
+> - SNS/SQS don't provide workflow orchestration
+>
+> **References:** Step Functions, Serverless Orchestration
 
 ---
 
@@ -312,21 +279,18 @@ B. Aurora Global Database
 C. DynamoDB Global Tables  
 D. Redshift with cross-region snapshots  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- DynamoDB Global Tables support multi-region active-active writes
-- Automatic conflict resolution (last-writer-wins)
-- Multi-master replication
-- RDS replicas are read-only
-- Aurora Global Database has one primary region for writes
-- Redshift is for analytics, not multi-region writes
-
-**References:** DynamoDB Global Tables, Multi-Region Architecture
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - DynamoDB Global Tables support multi-region active-active writes
+> - Automatic conflict resolution (last-writer-wins)
+> - Multi-master replication
+> - RDS replicas are read-only
+> - Aurora Global Database has one primary region for writes
+> - Redshift is for analytics, not multi-region writes
+>
+> **References:** DynamoDB Global Tables, Multi-Region Architecture
 
 ---
 
@@ -338,21 +302,18 @@ B. Amazon SQS FIFO Queue
 C. Amazon SNS  
 D. Amazon Kinesis Data Streams  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- SNS is publish-subscribe messaging service
-- One message published to topic, multiple subscribers receive it
-- Fan-out pattern
-- Classic pub/sub use case
-- SQS is point-to-point (one consumer per message)
-- Kinesis allows multiple consumers but is for streaming data
-
-**References:** SNS, Pub/Sub Pattern
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - SNS is publish-subscribe messaging service
+> - One message published to topic, multiple subscribers receive it
+> - Fan-out pattern
+> - Classic pub/sub use case
+> - SQS is point-to-point (one consumer per message)
+> - Kinesis allows multiple consumers but is for streaming data
+>
+> **References:** SNS, Pub/Sub Pattern
 
 ---
 
@@ -364,22 +325,19 @@ B. API Gateway → Lambda → S3 → Lambda (triggered by S3) → DynamoDB
 C. EC2 instances polling S3  
 D. Upload directly to EC2 for processing  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Upload triggers first Lambda to save to S3
-- S3 event triggers second Lambda for processing (asynchronous)
-- Decoupled, reliable processing
-- Lambda can run up to 15 minutes
-- Option A: API Gateway has 29-second timeout
-- Option C: Inefficient polling
-- Option D: No auto-scaling, not serverless
-
-**References:** Event-Driven Architecture, Asynchronous Processing
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Upload triggers first Lambda to save to S3
+> - S3 event triggers second Lambda for processing (asynchronous)
+> - Decoupled, reliable processing
+> - Lambda can run up to 15 minutes
+> - Option A: API Gateway has 29-second timeout
+> - Option C: Inefficient polling
+> - Option D: No auto-scaling, not serverless
+>
+> **References:** Event-Driven Architecture, Asynchronous Processing
 
 ---
 
@@ -391,21 +349,18 @@ B. Amazon Aurora with Read Replicas
 C. Amazon Redshift  
 D. ElastiCache  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Aurora supports ACID transactions (relational database)
-- Read Replicas scale read traffic (up to 15 replicas)
-- Better performance than standard RDS
-- DynamoDB doesn't support traditional ACID across multiple items
-- Redshift is for analytics, not transactional workloads
-- ElastiCache is for caching, not primary database
-
-**References:** Aurora, ACID Transactions
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Aurora supports ACID transactions (relational database)
+> - Read Replicas scale read traffic (up to 15 replicas)
+> - Better performance than standard RDS
+> - DynamoDB doesn't support traditional ACID across multiple items
+> - Redshift is for analytics, not transactional workloads
+> - ElastiCache is for caching, not primary database
+>
+> **References:** Aurora, ACID Transactions
 
 ---
 
@@ -417,23 +372,20 @@ B. Auto Scaling with target tracking based on CPU utilization
 C. Pre-warming with scheduled scaling  
 D. Serverless architecture with Lambda and DynamoDB on-demand  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: D**
-
-**Explanation:**
-- Serverless scales automatically without pre-warming
-- Lambda scales to thousands of concurrent executions
-- DynamoDB on-demand scales with traffic
-- No capacity planning required
-- Option A doesn't scale
-- Option B has lag time for scaling
-- Option C requires predicting launch time
-- Serverless handles unpredictable spikes best
-
-**References:** Serverless Architecture, Elastic Scaling
-</details>
+> [!success]- Show Answer
+> **Answer: D**
+>
+> **Explanation:**
+> - Serverless scales automatically without pre-warming
+> - Lambda scales to thousands of concurrent executions
+> - DynamoDB on-demand scales with traffic
+> - No capacity planning required
+> - Option A doesn't scale
+> - Option B has lag time for scaling
+> - Option C requires predicting launch time
+> - Serverless handles unpredictable spikes best
+>
+> **References:** Serverless Architecture, Elastic Scaling
 
 ---
 
@@ -445,22 +397,19 @@ B. Deploy application stack in the user's region with Route 53 latency-based rou
 C. Enable CloudFront compression  
 D. Upgrade to Provisioned IOPS for RDS  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Regional deployment reduces latency for local users
-- Route 53 latency-based routing directs to nearest region
-- CloudFront caches static content but dynamic content goes to origin
-- Multi-region deployment needed for dynamic content
-- Increasing instance size doesn't reduce network latency
-- Compression helps but doesn't solve regional latency
-- IOPS doesn't affect network latency
-
-**References:** Multi-Region Architecture, Latency Optimization
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Regional deployment reduces latency for local users
+> - Route 53 latency-based routing directs to nearest region
+> - CloudFront caches static content but dynamic content goes to origin
+> - Multi-region deployment needed for dynamic content
+> - Increasing instance size doesn't reduce network latency
+> - Compression helps but doesn't solve regional latency
+> - IOPS doesn't affect network latency
+>
+> **References:** Multi-Region Architecture, Latency Optimization
 
 ---
 
@@ -472,23 +421,20 @@ B. WAF + Shield + Security Groups + NACLs + KMS encryption
 C. IAM policies and Security Groups  
 D. CloudFront with HTTPS only  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Defense-in-depth requires multiple security layers
-- WAF: Application layer protection (OWASP Top 10)
-- Shield: DDoS protection
-- Security Groups: Instance-level firewall
-- NACLs: Subnet-level firewall
-- KMS: Data encryption
-- Layered approach provides comprehensive security
-- Single layer security is insufficient
-
-**References:** Defense in Depth, Security Patterns
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Defense-in-depth requires multiple security layers
+> - WAF: Application layer protection (OWASP Top 10)
+> - Shield: DDoS protection
+> - Security Groups: Instance-level firewall
+> - NACLs: Subnet-level firewall
+> - KMS: Data encryption
+> - Layered approach provides comprehensive security
+> - Single layer security is insufficient
+>
+> **References:** Defense in Depth, Security Patterns
 
 ---
 
@@ -500,22 +446,19 @@ B. SQS with visibility timeout and explicit deletion
 C. Kinesis with checkpointing  
 D. EventBridge with Lambda  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- SQS supports visibility timeout (hides message during processing)
-- Message only deleted after explicit DeleteMessage call
-- Ensures message not lost if processing fails
-- If processing fails, message becomes visible again
-- SNS doesn't persist messages
-- Kinesis is for streaming, not queue pattern
-- EventBridge doesn't provide message persistence
-
-**References:** SQS, Message Processing Patterns
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - SQS supports visibility timeout (hides message during processing)
+> - Message only deleted after explicit DeleteMessage call
+> - Ensures message not lost if processing fails
+> - If processing fails, message becomes visible again
+> - SNS doesn't persist messages
+> - Kinesis is for streaming, not queue pattern
+> - EventBridge doesn't provide message persistence
+>
+> **References:** SQS, Message Processing Patterns
 
 ---
 
@@ -527,22 +470,19 @@ B. Use Instance Scheduler to start/stop resources outside business hours
 C. Migrate to Serverless  
 D. Use Spot Instances  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Instance Scheduler automatically starts/stops resources on schedule
-- Saves costs during nights and weekends (65% of week)
-- Works with EC2 and RDS
-- Reserved Instances require 1-3 year commitment, doesn't stop resources
-- Serverless may not support all workloads
-- Spot Instances can be interrupted during work hours
-- Scheduled stop/start is most cost-effective for dev environments
-
-**References:** Cost Optimization, Instance Scheduler
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Instance Scheduler automatically starts/stops resources on schedule
+> - Saves costs during nights and weekends (65% of week)
+> - Works with EC2 and RDS
+> - Reserved Instances require 1-3 year commitment, doesn't stop resources
+> - Serverless may not support all workloads
+> - Spot Instances can be interrupted during work hours
+> - Scheduled stop/start is most cost-effective for dev environments
+>
+> **References:** Cost Optimization, Instance Scheduler
 
 ---
 

@@ -14,21 +14,18 @@ B. Deploy across multiple Availability Zones within a single Region
 C. Deploy across multiple Regions  
 D. Deploy using AWS Local Zones  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Availability Zones (AZs) are separate data centers within a Region
-- Deploying across multiple AZs protects against data center failure
-- This is the standard approach for high availability within a Region
-- Option C (multiple Regions) is for disaster recovery, not just data center failure
-- Edge Locations are for content delivery, not application hosting
-- Local Zones are for ultra-low latency but don't provide the same fault tolerance
-
-**References:** AWS Global Infrastructure, Well-Architected Framework - Reliability Pillar
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Availability Zones (AZs) are separate data centers within a Region
+> - Deploying across multiple AZs protects against data center failure
+> - This is the standard approach for high availability within a Region
+> - Option C (multiple Regions) is for disaster recovery, not just data center failure
+> - Edge Locations are for content delivery, not application hosting
+> - Local Zones are for ultra-low latency but don't provide the same fault tolerance
+>
+> **References:** AWS Global Infrastructure, Well-Architected Framework - Reliability Pillar
 
 ---
 
@@ -40,21 +37,18 @@ B. Amazon CloudFront with S3 as the origin
 C. Amazon S3 with Transfer Acceleration  
 D. Multiple EC2 instances in different Regions  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- CloudFront is AWS's Content Delivery Network (CDN) with 400+ edge locations globally
-- It caches content close to users, minimizing latency
-- S3 serves as the origin for static content
-- Option A provides redundancy but doesn't optimize latency
-- Option C accelerates uploads, not downloads
-- Option D is cost-ineffective and complex to manage
-
-**References:** CloudFront, Edge Locations, Global Infrastructure
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - CloudFront is AWS's Content Delivery Network (CDN) with 400+ edge locations globally
+> - It caches content close to users, minimizing latency
+> - S3 serves as the origin for static content
+> - Option A provides redundancy but doesn't optimize latency
+> - Option C accelerates uploads, not downloads
+> - Option D is cost-ineffective and complex to manage
+>
+> **References:** CloudFront, Edge Locations, Global Infrastructure
 
 ---
 
@@ -66,20 +60,17 @@ B. Patch management of guest operating systems on EC2
 C. Physical security of data centers  
 D. Configuration of security groups  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- AWS is responsible for "Security OF the Cloud" - physical infrastructure
-- This includes data centers, hardware, and facilities
-- Customers are responsible for "Security IN the Cloud"
-- Options A, B, and D are all customer responsibilities
-- Customers choose whether to encrypt, patch OS, and configure security
-
-**References:** AWS Shared Responsibility Model
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - AWS is responsible for "Security OF the Cloud" - physical infrastructure
+> - This includes data centers, hardware, and facilities
+> - Customers are responsible for "Security IN the Cloud"
+> - Options A, B, and D are all customer responsibilities
+> - Customers choose whether to encrypt, patch OS, and configure security
+>
+> **References:** AWS Shared Responsibility Model
 
 ---
 
@@ -91,21 +82,18 @@ B. Platform as a Service (PaaS)
 C. Software as a Service (SaaS)  
 D. Function as a Service (FaaS)  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- PaaS services (like Elastic Beanstalk) abstract infrastructure management
-- Users deploy code without managing servers or OS
-- IaaS (like EC2) requires managing virtual machines
-- SaaS is fully managed applications (like Amazon Chime)
-- FaaS (like Lambda) is event-driven, not for full applications typically
-- PaaS is the best fit for deploying applications without infrastructure management
-
-**References:** AWS Service Categories, Cloud Computing Models
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - PaaS services (like Elastic Beanstalk) abstract infrastructure management
+> - Users deploy code without managing servers or OS
+> - IaaS (like EC2) requires managing virtual machines
+> - SaaS is fully managed applications (like Amazon Chime)
+> - FaaS (like Lambda) is event-driven, not for full applications typically
+> - PaaS is the best fit for deploying applications without infrastructure management
+>
+> **References:** AWS Service Categories, Cloud Computing Models
 
 ---
 
@@ -117,21 +105,18 @@ B. Choose the appropriate AWS Region and do not enable cross-region features
 C. Use AWS Organizations with Service Control Policies  
 D. Enable AWS CloudTrail  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Data in an AWS Region stays in that Region unless you explicitly configure otherwise
-- No cross-region replication, backups, or data transfer ensures data residency
-- GuardDuty is for threat detection, not data residency
-- SCPs can enforce policies but the key is choosing the right Region
-- CloudTrail is for logging, not data residency
-- Primary control: select Region and don't configure cross-region services
-
-**References:** AWS Regions, Data Sovereignty, Compliance
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Data in an AWS Region stays in that Region unless you explicitly configure otherwise
+> - No cross-region replication, backups, or data transfer ensures data residency
+> - GuardDuty is for threat detection, not data residency
+> - SCPs can enforce policies but the key is choosing the right Region
+> - CloudTrail is for logging, not data residency
+> - Primary control: select Region and don't configure cross-region services
+>
+> **References:** AWS Regions, Data Sovereignty, Compliance
 
 ---
 
@@ -143,20 +128,17 @@ B. Security
 C. Reliability  
 D. Performance Efficiency  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- Reliability pillar focuses on recovery from failures and maintaining workload functionality
-- Key aspects: fault tolerance, disaster recovery, self-healing
-- Operational Excellence focuses on operations and monitoring
-- Security focuses on protecting information and systems
-- Performance Efficiency focuses on using resources efficiently
-
-**References:** AWS Well-Architected Framework - Reliability Pillar
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - Reliability pillar focuses on recovery from failures and maintaining workload functionality
+> - Key aspects: fault tolerance, disaster recovery, self-healing
+> - Operational Excellence focuses on operations and monitoring
+> - Security focuses on protecting information and systems
+> - Performance Efficiency focuses on using resources efficiently
+>
+> **References:** AWS Well-Architected Framework - Reliability Pillar
 
 ---
 
@@ -168,20 +150,17 @@ B. AWS Budgets
 C. AWS Pricing Calculator  
 D. AWS Cost and Usage Report  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- AWS Pricing Calculator estimates costs for planned architectures
-- Cost Explorer analyzes existing/historical costs
-- AWS Budgets sets budget alerts
-- Cost and Usage Report provides detailed billing data
-- For estimation BEFORE deployment, Pricing Calculator is correct
-
-**References:** AWS Pricing Tools, Cost Management
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - AWS Pricing Calculator estimates costs for planned architectures
+> - Cost Explorer analyzes existing/historical costs
+> - AWS Budgets sets budget alerts
+> - Cost and Usage Report provides detailed billing data
+> - For estimation BEFORE deployment, Pricing Calculator is correct
+>
+> **References:** AWS Pricing Tools, Cost Management
 
 ---
 
@@ -193,20 +172,17 @@ B. Availability Zone
 C. AWS Local Zone  
 D. AWS Wavelength Zone  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- AWS Local Zones bring compute, storage, and database closer to end-users
-- Designed for single-digit millisecond latency requirements
-- Placed in metropolitan areas for ultra-low latency applications
-- Wavelength Zones are for 5G edge computing
-- Regular Regions/AZs may not meet ultra-low latency requirements
-
-**References:** AWS Local Zones, Global Infrastructure
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - AWS Local Zones bring compute, storage, and database closer to end-users
+> - Designed for single-digit millisecond latency requirements
+> - Placed in metropolitan areas for ultra-low latency applications
+> - Wavelength Zones are for 5G edge computing
+> - Regular Regions/AZs may not meet ultra-low latency requirements
+>
+> **References:** AWS Local Zones, Global Infrastructure
 
 ---
 
@@ -218,21 +194,18 @@ B. AWS Organizations
 C. AWS Control Tower  
 D. AWS Systems Manager  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- AWS Organizations centrally manages multiple AWS accounts
-- Provides consolidated billing, account creation, and policy management
-- IAM manages permissions within an account
-- Control Tower sets up multi-account environments (uses Organizations underneath)
-- Systems Manager manages AWS resources, not accounts
-- Direct answer for multi-account management: Organizations
-
-**References:** AWS Organizations, Account Management
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - AWS Organizations centrally manages multiple AWS accounts
+> - Provides consolidated billing, account creation, and policy management
+> - IAM manages permissions within an account
+> - Control Tower sets up multi-account environments (uses Organizations underneath)
+> - Systems Manager manages AWS resources, not accounts
+> - Direct answer for multi-account management: Organizations
+>
+> **References:** AWS Organizations, Account Management
 
 ---
 
@@ -244,20 +217,17 @@ B. Go global in minutes
 C. Stop spending money on data center operations  
 D. Implement feedback loops  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: A**
-
-**Explanation:**
-- "Implement a strong identity foundation" is a Security pillar principle
-- Includes: least privilege, separation of duties, centralized identity management
-- Option B relates to global deployment (general AWS benefit)
-- Option C is a cloud advantage, not security principle
-- Option D relates to Operational Excellence pillar
-
-**References:** AWS Well-Architected Framework - Security Pillar Design Principles
-</details>
+> [!success]- Show Answer
+> **Answer: A**
+>
+> **Explanation:**
+> - "Implement a strong identity foundation" is a Security pillar principle
+> - Includes: least privilege, separation of duties, centralized identity management
+> - Option B relates to global deployment (general AWS benefit)
+> - Option C is a cloud advantage, not security principle
+> - Option D relates to Operational Excellence pillar
+>
+> **References:** AWS Well-Architected Framework - Security Pillar Design Principles
 
 ---
 
@@ -269,21 +239,18 @@ B. Create an IAM user and store credentials in the script
 C. Use IAM roles with temporary security credentials  
 D. Use access keys without secret keys  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- IAM roles provide temporary security credentials via AWS STS
-- Credentials rotate automatically, enhancing security
-- Never use root account credentials for daily tasks
-- Never hardcode credentials in scripts
-- Access keys always require secret keys
-- Best practice: IAM roles with temporary credentials
-
-**References:** IAM Best Practices, AWS CLI Security
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - IAM roles provide temporary security credentials via AWS STS
+> - Credentials rotate automatically, enhancing security
+> - Never use root account credentials for daily tasks
+> - Never hardcode credentials in scripts
+> - Access keys always require secret keys
+> - Best practice: IAM roles with temporary credentials
+>
+> **References:** IAM Best Practices, AWS CLI Security
 
 ---
 
@@ -296,20 +263,17 @@ C. Compliance with data sovereignty requirements
 D. Lower costs compared to using a single Region  
 E. Automatic failover between Regions  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: A, C**
-
-**Explanation:**
-- **A is correct**: Deploying in Regions closer to users reduces latency
-- **C is correct**: Regions enable meeting data residency/sovereignty requirements
-- B is incorrect: Replication is NOT automatic, must be configured
-- D is incorrect: Multiple Regions typically increase costs
-- E is incorrect: Failover is NOT automatic, requires architecture design
-
-**References:** AWS Regions, Global Infrastructure Benefits
-</details>
+> [!success]- Show Answer
+> **Answer: A, C**
+>
+> **Explanation:**
+> - **A is correct**: Deploying in Regions closer to users reduces latency
+> - **C is correct**: Regions enable meeting data residency/sovereignty requirements
+> - B is incorrect: Replication is NOT automatic, must be configured
+> - D is incorrect: Multiple Regions typically increase costs
+> - E is incorrect: Failover is NOT automatic, requires architecture design
+>
+> **References:** AWS Regions, Global Infrastructure Benefits
 
 ---
 
@@ -321,21 +285,18 @@ B. Design the application to handle component failures gracefully
 C. Deploy all resources in a single Availability Zone for simplicity  
 D. Rely on AWS Support to handle all failures  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- "Design for Failure" means assuming components will fail and planning accordingly
-- Applications should handle failures gracefully with retry logic, health checks, etc.
-- Larger instances don't prevent failures
-- Single AZ deployment increases failure risk
-- You must design for failure, not rely solely on support
-- Proper approach: graceful degradation, automatic recovery
-
-**References:** AWS Well-Architected Framework - Reliability Pillar
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - "Design for Failure" means assuming components will fail and planning accordingly
+> - Applications should handle failures gracefully with retry logic, health checks, etc.
+> - Larger instances don't prevent failures
+> - Single AZ deployment increases failure risk
+> - You must design for failure, not rely solely on support
+> - Proper approach: graceful degradation, automatic recovery
+>
+> **References:** AWS Well-Architected Framework - Reliability Pillar
 
 ---
 
@@ -347,19 +308,16 @@ B. There are fewer Edge Locations than Regions
 C. Edge Locations can be used for both content delivery and edge computing  
 D. Edge Locations are the same as Availability Zones  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- Edge Locations support CloudFront (CDN), Lambda@Edge, and other edge services
-- There are 400+ edge locations vs 30+ Regions
-- Edge Locations ≠ Availability Zones (different purposes)
-- Used for content delivery AND edge computing (Lambda@Edge, CloudFront Functions)
-
-**References:** AWS Global Infrastructure - Edge Locations
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - Edge Locations support CloudFront (CDN), Lambda@Edge, and other edge services
+> - There are 400+ edge locations vs 30+ Regions
+> - Edge Locations ≠ Availability Zones (different purposes)
+> - Used for content delivery AND edge computing (Lambda@Edge, CloudFront Functions)
+>
+> **References:** AWS Global Infrastructure - Edge Locations
 
 ---
 
@@ -371,21 +329,18 @@ B. AWS Budgets
 C. AWS Pricing Calculator  
 D. AWS Trusted Advisor  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- AWS Budgets allows setting custom cost/usage budgets with alerts
-- Can send notifications via SNS when thresholds are exceeded
-- Cost Explorer visualizes historical costs but doesn't send alerts
-- Pricing Calculator estimates future costs
-- Trusted Advisor provides best practice recommendations
-- For threshold alerts: AWS Budgets
-
-**References:** AWS Budgets, Cost Management
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - AWS Budgets allows setting custom cost/usage budgets with alerts
+> - Can send notifications via SNS when thresholds are exceeded
+> - Cost Explorer visualizes historical costs but doesn't send alerts
+> - Pricing Calculator estimates future costs
+> - Trusted Advisor provides best practice recommendations
+> - For threshold alerts: AWS Budgets
+>
+> **References:** AWS Budgets, Cost Management
 
 ---
 
@@ -397,19 +352,16 @@ B. AWS
 C. Both AWS and Customer  
 D. Third-party vendors  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- AWS manages the hypervisor layer (security OF the cloud)
-- Customers manage guest OS patches (security IN the cloud)
-- Hypervisor is infrastructure, AWS's responsibility
-- Customer patches OS, applications, data encryption
-
-**References:** AWS Shared Responsibility Model - EC2
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - AWS manages the hypervisor layer (security OF the cloud)
+> - Customers manage guest OS patches (security IN the cloud)
+> - Hypervisor is infrastructure, AWS's responsibility
+> - Customer patches OS, applications, data encryption
+>
+> **References:** AWS Shared Responsibility Model - EC2
 
 ---
 
@@ -421,21 +373,18 @@ B. AWS Wavelength
 C. AWS Outposts  
 D. AWS Direct Connect  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- AWS Wavelength embeds compute at 5G network edge
-- Provides single-digit millisecond latency to mobile devices
-- Local Zones are for metro areas but not 5G-specific
-- Outposts is for on-premises AWS infrastructure
-- Direct Connect is for dedicated network connection
-- For 5G mobile: Wavelength
-
-**References:** AWS Wavelength, Edge Computing
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - AWS Wavelength embeds compute at 5G network edge
+> - Provides single-digit millisecond latency to mobile devices
+> - Local Zones are for metro areas but not 5G-specific
+> - Outposts is for on-premises AWS infrastructure
+> - Direct Connect is for dedicated network connection
+> - For 5G mobile: Wavelength
+>
+> **References:** AWS Wavelength, Edge Computing
 
 ---
 
@@ -447,21 +396,18 @@ B. Performance Efficiency
 C. Reliability  
 D. Operational Excellence  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Performance Efficiency pillar includes capacity planning principles
-- "Stop guessing capacity" - use Auto Scaling and elastic services
-- Enables right-sizing and dynamic capacity adjustment
-- Cost Optimization focuses on eliminating waste
-- Reliability focuses on recovery and testing
-- Operational Excellence focuses on running/monitoring
-
-**References:** AWS Well-Architected Framework - Performance Efficiency Pillar
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Performance Efficiency pillar includes capacity planning principles
+> - "Stop guessing capacity" - use Auto Scaling and elastic services
+> - Enables right-sizing and dynamic capacity adjustment
+> - Cost Optimization focuses on eliminating waste
+> - Reliability focuses on recovery and testing
+> - Operational Excellence focuses on running/monitoring
+>
+> **References:** AWS Well-Architected Framework - Performance Efficiency Pillar
 
 ---
 
@@ -473,21 +419,18 @@ B. AWS Organizations with consolidated billing
 C. Multiple IAM users in one account  
 D. AWS Resource Groups  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- AWS Organizations provides consolidated billing across multiple accounts
-- Each team gets isolated account with separate resources
-- Single bill for entire organization
-- Control Tower helps set up Organizations but Organizations is the direct answer
-- IAM users don't provide account-level isolation
-- Resource Groups organize resources, not billing
-
-**References:** AWS Organizations, Consolidated Billing
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - AWS Organizations provides consolidated billing across multiple accounts
+> - Each team gets isolated account with separate resources
+> - Single bill for entire organization
+> - Control Tower helps set up Organizations but Organizations is the direct answer
+> - IAM users don't provide account-level isolation
+> - Resource Groups organize resources, not billing
+>
+> **References:** AWS Organizations, Consolidated Billing
 
 ---
 
@@ -499,21 +442,18 @@ B. To enable fault tolerance and high availability
 C. To support different AWS services  
 D. To reduce data transfer costs  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Availability Zones are isolated locations within a Region
-- Primary purpose: fault tolerance and high availability
-- Each AZ has independent power, cooling, networking
-- Deploying across AZs protects against single point of failure
-- Not for pricing, service availability, or cost reduction
-- Core purpose: resilience and availability
-
-**References:** AWS Availability Zones, High Availability Architecture
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Availability Zones are isolated locations within a Region
+> - Primary purpose: fault tolerance and high availability
+> - Each AZ has independent power, cooling, networking
+> - Deploying across AZs protects against single point of failure
+> - Not for pricing, service availability, or cost reduction
+> - Core purpose: resilience and availability
+>
+> **References:** AWS Availability Zones, High Availability Architecture
 
 ---
 
@@ -525,22 +465,19 @@ B. AWS Organizations
 C. AWS Control Tower  
 D. AWS Systems Manager  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- **AWS Organizations** is the service for managing multiple AWS accounts
-- Provides consolidated billing across all accounts
-- Enables Service Control Policies (SCPs) for organization-wide policies
-- Can create Organizational Units (OUs) for logical grouping
-- Control Tower (C) is built on Organizations but is for automated setup
-- IAM (A) is for user/role management within a single account
-- Systems Manager (D) is for operations, not multi-account management
-
-**References:** AWS Organizations, Multi-Account Strategy
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - **AWS Organizations** is the service for managing multiple AWS accounts
+> - Provides consolidated billing across all accounts
+> - Enables Service Control Policies (SCPs) for organization-wide policies
+> - Can create Organizational Units (OUs) for logical grouping
+> - Control Tower (C) is built on Organizations but is for automated setup
+> - IAM (A) is for user/role management within a single account
+> - Systems Manager (D) is for operations, not multi-account management
+>
+> **References:** AWS Organizations, Multi-Account Strategy
 
 ---
 
@@ -552,39 +489,36 @@ B. Use AWS Config rules to detect non-compliant resources
 C. Create a Service Control Policy (SCP) denying actions in other regions  
 D. Use AWS Firewall Manager to block region access  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- **Service Control Policies (SCPs)** provide centralized, preventive controls
-- SCPs can restrict which AWS regions can be used
-- Applied at the Organization, OU, or account level
-- Cannot be overridden by users in member accounts
-- IAM policies (A) can be changed by account administrators
-- Config rules (B) are detective, not preventive
-- Firewall Manager (D) is for security group/WAF rules, not region restrictions
-
-**SCP Example:**
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [{
-    "Effect": "Deny",
-    "Action": "*",
-    "Resource": "*",
-    "Condition": {
-      "StringNotEquals": {
-        "aws:RequestedRegion": ["us-east-1", "eu-west-1"]
-      }
-    }
-  }]
-}
-```
-
-**References:** Service Control Policies, AWS Organizations, Region Restrictions
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - **Service Control Policies (SCPs)** provide centralized, preventive controls
+> - SCPs can restrict which AWS regions can be used
+> - Applied at the Organization, OU, or account level
+> - Cannot be overridden by users in member accounts
+> - IAM policies (A) can be changed by account administrators
+> - Config rules (B) are detective, not preventive
+> - Firewall Manager (D) is for security group/WAF rules, not region restrictions
+>
+> **SCP Example:**
+> ```json
+> {
+>   "Version": "2012-10-17",
+>   "Statement": [{
+>     "Effect": "Deny",
+>     "Action": "*",
+>     "Resource": "*",
+>     "Condition": {
+>       "StringNotEquals": {
+>         "aws:RequestedRegion": ["us-east-1", "eu-west-1"]
+>       }
+>     }
+>   }]
+> }
+> ```
+>
+> **References:** Service Control Policies, AWS Organizations, Region Restrictions
 
 ---
 
@@ -596,28 +530,25 @@ B. SCPs affect the management account in an AWS Organization
 C. SCPs define maximum permissions for member accounts  
 D. SCPs can only be applied to individual accounts, not OUs  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- **SCPs define maximum permissions** - they act as guardrails
-- SCPs do NOT grant permissions (A is wrong)
-- They only restrict what is possible
-- SCPs do NOT affect the management account (B is wrong)
-- SCPs can be applied to Organization root, OUs, or accounts (D is wrong)
-- Effective permissions = IAM policy AND SCP
-
-**Key SCP Rules:**
-- ❌ Don't grant permissions
-- ❌ Don't affect management account
-- ✅ Set maximum permission boundaries
-- ✅ Can be applied to OUs
-- ✅ Inherited down the hierarchy
-
-**References:** Service Control Policies, Permission Boundaries
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - **SCPs define maximum permissions** - they act as guardrails
+> - SCPs do NOT grant permissions (A is wrong)
+> - They only restrict what is possible
+> - SCPs do NOT affect the management account (B is wrong)
+> - SCPs can be applied to Organization root, OUs, or accounts (D is wrong)
+> - Effective permissions = IAM policy AND SCP
+>
+> **Key SCP Rules:**
+> - ❌ Don't grant permissions
+> - ❌ Don't affect management account
+> - ✅ Set maximum permission boundaries
+> - ✅ Can be applied to OUs
+> - ✅ Inherited down the hierarchy
+>
+> **References:** Service Control Policies, Permission Boundaries
 
 ---
 
@@ -629,40 +560,37 @@ B. AWS Control Tower
 C. AWS CloudFormation StackSets  
 D. AWS Service Catalog  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- **AWS Control Tower** provides automated multi-account setup
-- Includes Landing Zone (well-architected baseline)
-- Pre-configured guardrails (preventive and detective)
-- Account Factory for automated provisioning
-- Built on top of AWS Organizations
-- AWS Organizations (A) requires manual setup
-- CloudFormation StackSets (C) deploys templates, not governance
-- Service Catalog (D) is for self-service IT resources
-
-**Control Tower Features:**
-- ✅ Automated setup (minutes vs days)
-- ✅ Pre-built guardrails
-- ✅ Account Factory
-- ✅ Compliance dashboard
-- ✅ Integrated with Organizations, IAM Identity Center, CloudTrail
-
-**When to Use:**
-- Quick setup with best practices
-- Less AWS expertise required
-- Want pre-built governance
-
-**When to Use Organizations Directly:**
-- Need maximum flexibility
-- Have custom requirements
-- Experienced AWS team
-
-**References:** AWS Control Tower, Landing Zone, Multi-Account Governance
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - **AWS Control Tower** provides automated multi-account setup
+> - Includes Landing Zone (well-architected baseline)
+> - Pre-configured guardrails (preventive and detective)
+> - Account Factory for automated provisioning
+> - Built on top of AWS Organizations
+> - AWS Organizations (A) requires manual setup
+> - CloudFormation StackSets (C) deploys templates, not governance
+> - Service Catalog (D) is for self-service IT resources
+>
+> **Control Tower Features:**
+> - ✅ Automated setup (minutes vs days)
+> - ✅ Pre-built guardrails
+> - ✅ Account Factory
+> - ✅ Compliance dashboard
+> - ✅ Integrated with Organizations, IAM Identity Center, CloudTrail
+>
+> **When to Use:**
+> - Quick setup with best practices
+> - Less AWS expertise required
+> - Want pre-built governance
+>
+> **When to Use Organizations Directly:**
+> - Need maximum flexibility
+> - Have custom requirements
+> - Experienced AWS team
+>
+> **References:** AWS Control Tower, Landing Zone, Multi-Account Governance
 
 ---
 
@@ -674,37 +602,34 @@ B. AWS Transit Gateway
 C. AWS Resource Access Manager (RAM)  
 D. AWS PrivateLink  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- **AWS Resource Access Manager (RAM)** allows sharing resources across accounts
-- Can share VPC subnets between accounts
-- Resources remain in owner account, but accessible to shared accounts
-- No need to duplicate VPCs
-- VPC Peering (A) connects VPCs but doesn't share subnets
-- Transit Gateway (B) connects networks but doesn't share subnets
-- PrivateLink (D) is for service-to-VPC connectivity
-
-**Benefits of Subnet Sharing with RAM:**
-- ✅ Centralized network management
-- ✅ Reduced VPC sprawl
-- ✅ Efficient IP address usage
-- ✅ Simplified network architecture
-- ✅ Lower operational overhead
-
-**Other Shareable Resources via RAM:**
-- VPC Subnets (most common)
-- Transit Gateway attachments
-- Route 53 Resolver rules
-- License Manager configurations
-- Aurora DB clusters
-- Prefix lists
-
-**References:** AWS Resource Access Manager, VPC Subnet Sharing, Centralized Networking
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - **AWS Resource Access Manager (RAM)** allows sharing resources across accounts
+> - Can share VPC subnets between accounts
+> - Resources remain in owner account, but accessible to shared accounts
+> - No need to duplicate VPCs
+> - VPC Peering (A) connects VPCs but doesn't share subnets
+> - Transit Gateway (B) connects networks but doesn't share subnets
+> - PrivateLink (D) is for service-to-VPC connectivity
+>
+> **Benefits of Subnet Sharing with RAM:**
+> - ✅ Centralized network management
+> - ✅ Reduced VPC sprawl
+> - ✅ Efficient IP address usage
+> - ✅ Simplified network architecture
+> - ✅ Lower operational overhead
+>
+> **Other Shareable Resources via RAM:**
+> - VPC Subnets (most common)
+> - Transit Gateway attachments
+> - Route 53 Resolver rules
+> - License Manager configurations
+> - Aurora DB clusters
+> - Prefix lists
+>
+> **References:** AWS Resource Access Manager, VPC Subnet Sharing, Centralized Networking
 
 ---
 
@@ -716,29 +641,26 @@ B. Consolidated billing combines usage across all accounts for volume pricing
 C. The management account gets all the discounts  
 D. SCPs enable cost savings automatically  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- **Consolidated billing** combines usage across all accounts
-- AWS treats the entire organization as a single billing entity
-- Volume discounts apply to combined usage
-- Example: 3 accounts with 500GB each = 1500GB total → higher tier pricing
-- Not automatic discounts (A), just usage aggregation
-- All accounts benefit, not just management account (C)
-- SCPs are for permissions, not costs (D)
-
-**Consolidated Billing Benefits:**
-- ✅ Volume discounts across accounts
-- ✅ Single payment method
-- ✅ Easier cost tracking
-- ✅ Cost allocation tags across org
-- ✅ Reserved Instance sharing
-
-**References:** AWS Organizations, Consolidated Billing, Volume Pricing
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - **Consolidated billing** combines usage across all accounts
+> - AWS treats the entire organization as a single billing entity
+> - Volume discounts apply to combined usage
+> - Example: 3 accounts with 500GB each = 1500GB total → higher tier pricing
+> - Not automatic discounts (A), just usage aggregation
+> - All accounts benefit, not just management account (C)
+> - SCPs are for permissions, not costs (D)
+>
+> **Consolidated Billing Benefits:**
+> - ✅ Volume discounts across accounts
+> - ✅ Single payment method
+> - ✅ Easier cost tracking
+> - ✅ Cost allocation tags across org
+> - ✅ Reserved Instance sharing
+>
+> **References:** AWS Organizations, Consolidated Billing, Volume Pricing
 
 ---
 
@@ -750,38 +672,35 @@ B. Service Control Policy (SCP)
 C. Resource Control Policy  
 D. Organizational Lock  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- **Service Control Policies (SCPs)** can prevent accounts from leaving
-- SCP can deny the `organizations:LeaveOrganization` action
-- Applied at Organization or OU level
-- Cannot be overridden by member accounts
-
-**Example SCP:**
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [{
-    "Effect": "Deny",
-    "Action": "organizations:LeaveOrganization",
-    "Resource": "*"
-  }]
-}
-```
-
-**Other Preventive SCP Use Cases:**
-- Prevent deletion of CloudTrail
-- Deny public S3 buckets
-- Restrict to approved instance types
-- Enforce encryption requirements
-- Restrict root user actions
-
-**References:** Service Control Policies, Organization Governance
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - **Service Control Policies (SCPs)** can prevent accounts from leaving
+> - SCP can deny the `organizations:LeaveOrganization` action
+> - Applied at Organization or OU level
+> - Cannot be overridden by member accounts
+>
+> **Example SCP:**
+> ```json
+> {
+>   "Version": "2012-10-17",
+>   "Statement": [{
+>     "Effect": "Deny",
+>     "Action": "organizations:LeaveOrganization",
+>     "Resource": "*"
+>   }]
+> }
+> ```
+>
+> **Other Preventive SCP Use Cases:**
+> - Prevent deletion of CloudTrail
+> - Deny public S3 buckets
+> - Restrict to approved instance types
+> - Enforce encryption requirements
+> - Restrict root user actions
+>
+> **References:** Service Control Policies, Organization Governance
 
 ---
 

@@ -131,42 +131,39 @@ Incorrect Questions (Final Review):
 
 ## 🔑 Answer Key (Use After Attempting)
 
-<details>
-<summary>Click to reveal answer key</summary>
-
-### Correct Answers:
-1. C - ECS Task Definition
-2. B - Health check on primary only
-3. C - Gateway for S3, Interface for SQS
-4. B - Export/ImportValue
-5. B - Transit Gateway with ECMP
-6. C - us-east-1 ONLY
-7. B - Custom path /health
-8. C - GuardDuty
-9. C - Restore, copy, delete
-10. B - Multipart Upload
-11. B - CloudWatch agent + custom metric
-12. C - Compute SP + RDS RI
-13. D - Export to Glacier immediately
-14. B - ECS on EC2 on Outposts
-15. B - Redis Multi-AZ
-16. C - FSx for Lustre with S3 integration
-17. B and C - Customer GW + Virtual Private GW
-18. B - DynamoDB Streams + Lambda
-19. C - BGP 7224:9100
-20. C - DataSync
-21. B - NAT per AZ
-22. A - Enable encryption on existing
-23. C - Multi-AZ + Read Replicas
-24. B - Missing CloudWatch Logs permissions
-25. B - Cooldown prevents scaling
-26. B - Custom error response
-27. B - io2 with 20,000 IOPS
-28. B and C - Customer GW + VGW
-29. B - DynamoDB Streams
-30. C - BGP 7224:9100
-
-</details>
+> [!success]- Click to reveal answer key
+> ### Correct Answers:
+> 1. C - ECS Task Definition
+> 2. B - Health check on primary only
+> 3. C - Gateway for S3, Interface for SQS
+> 4. B - Export/ImportValue
+> 5. B - Transit Gateway with ECMP
+> 6. C - us-east-1 ONLY
+> 7. B - Custom path /health
+> 8. C - GuardDuty
+> 9. C - Restore, copy, delete
+> 10. B - Multipart Upload
+> 11. B - CloudWatch agent + custom metric
+> 12. C - Compute SP + RDS RI
+> 13. D - Export to Glacier immediately
+> 14. B - ECS on EC2 on Outposts
+> 15. B - Redis Multi-AZ
+> 16. C - FSx for Lustre with S3 integration
+> 17. B and C - Customer GW + Virtual Private GW
+> 18. B - DynamoDB Streams + Lambda
+> 19. C - BGP 7224:9100
+> 20. C - DataSync
+> 21. B - NAT per AZ
+> 22. A - Enable encryption on existing
+> 23. C - Multi-AZ + Read Replicas
+> 24. B - Missing CloudWatch Logs permissions
+> 25. B - Cooldown prevents scaling
+> 26. B - Custom error response
+> 27. B - io2 with 20,000 IOPS
+> 28. B and C - Customer GW + VGW
+> 29. B - DynamoDB Streams
+> 30. C - BGP 7224:9100
+>
 
 ---
 

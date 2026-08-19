@@ -506,6 +506,10 @@ Root (Organization)
   ]
 }
 ```
+This means:
+
+> “Check if the volume is **unencrypted** (ec2:Encrypted = false). 
+   If yes → the condition is **true** → apply the **Deny**.”
 
 **SCP Example 3: Prevent Users from Leaving Organization**
 ```json
@@ -589,6 +593,8 @@ Is there an explicit Allow in SCP? → YES → Check IAM Policy
 **When to Use:**
 - **Control Tower**: Quick setup, governance out-of-the-box, less AWS experience
 - **Organizations**: Maximum flexibility, custom policies, experienced teams
+
+**Video:** [AWS Control Tower & Organizations](https://www.youtube.com/watch?v=ew16ZDoAals)
 
 #### AWS Resource Access Manager (RAM)
 
@@ -782,13 +788,10 @@ B) Encrypting data stored in S3 buckets
 C) Physical security of data centers  
 D) Configuring security groups
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation**: Physical security of data centers is AWS's responsibility ("Security OF the cloud"). Options A, B, and D are customer responsibilities ("Security IN the cloud").
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation**: Physical security of data centers is AWS's responsibility ("Security OF the cloud"). Options A, B, and D are customer responsibilities ("Security IN the cloud").
 
 ### Question 2
 **A company wants to deploy a web application that must remain available even if an entire AWS data center becomes unavailable. What should they do?**
@@ -798,13 +801,10 @@ B) Deploy the application across multiple Availability Zones
 C) Deploy the application using multiple Edge Locations  
 D) Use AWS CloudFormation for deployment
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation**: Deploying across multiple Availability Zones within a region ensures the application remains available even if one AZ (data center) fails. Multi-Region (A) would be for disaster recovery across regions. Edge Locations (C) are for content delivery. CloudFormation (D) is for infrastructure as code.
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation**: Deploying across multiple Availability Zones within a region ensures the application remains available even if one AZ (data center) fails. Multi-Region (A) would be for disaster recovery across regions. Edge Locations (C) are for content delivery. CloudFormation (D) is for infrastructure as code.
 
 ### Question 3
 **Which pillar of the AWS Well-Architected Framework focuses on the ability to recover from failures and dynamically acquire resources to meet demand?**
@@ -814,13 +814,10 @@ B) Security
 C) Reliability  
 D) Performance Efficiency
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation**: Reliability pillar focuses on the ability to recover from failures and dynamically acquire computing resources to meet demand.
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation**: Reliability pillar focuses on the ability to recover from failures and dynamically acquire computing resources to meet demand.
 
 ### Question 4
 **What is the minimum number of Availability Zones in an AWS Region?**
@@ -830,13 +827,10 @@ B) 2
 C) 3  
 D) 4
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation**: Every AWS region has a minimum of 3 Availability Zones, though most have more.
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation**: Every AWS region has a minimum of 3 Availability Zones, though most have more.
 
 ### Question 5
 **A solutions architect needs to ensure that users in Asia experience low latency when accessing static web content hosted in us-east-1. What should they use?**
@@ -846,13 +840,10 @@ B) Use Amazon CloudFront
 C) Create a VPC in Asia  
 D) Use Route 53 geoproximity routing
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation**: CloudFront uses Edge Locations globally to cache content closer to users, reducing latency. This is more cost-effective than deploying in multiple regions (A) for static content.
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation**: CloudFront uses Edge Locations globally to cache content closer to users, reducing latency. This is more cost-effective than deploying in multiple regions (A) for static content.
 
 ---
 

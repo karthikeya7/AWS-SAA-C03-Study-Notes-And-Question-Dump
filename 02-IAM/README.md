@@ -634,13 +634,10 @@ B) Create an IAM user and share the access keys
 C) Attach an IAM role to the EC2 instance  
 D) Make the S3 bucket publicly accessible
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation**: Attaching an IAM role to EC2 is the most secure method. It provides temporary credentials that are automatically rotated, and credentials don't need to be stored in code.
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation**: Attaching an IAM role to EC2 is the most secure method. It provides temporary credentials that are automatically rotated, and credentials don't need to be stored in code.
 
 ### Question 2
 **A company wants to enforce that all API calls to S3 must be authenticated with MFA. Which IAM feature should be used?**
@@ -650,13 +647,10 @@ B) IAM Policy Conditions
 C) IAM Access Analyzer  
 D) Service Control Policies
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation**: IAM policy conditions can enforce MFA. Example condition: `"aws:MultiFactorAuthPresent": "true"`
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation**: IAM policy conditions can enforce MFA. Example condition: `"aws:MultiFactorAuthPresent": "true"`
 
 ### Question 3
 **What happens when an IAM policy explicitly denies an action, but another policy explicitly allows the same action?**
@@ -666,13 +660,10 @@ B) The action is denied
 C) The policies conflict and fail  
 D) The newer policy takes precedence
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation**: Explicit deny always overrides explicit allow. This is a fundamental rule of IAM policy evaluation.
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation**: Explicit deny always overrides explicit allow. This is a fundamental rule of IAM policy evaluation.
 
 ### Question 4
 **A company needs to allow employees to access AWS using their existing corporate Active Directory credentials. What should they implement?**
@@ -682,13 +673,10 @@ B) Use Web Identity Federation
 C) Configure SAML 2.0 federation  
 D) Share the root account credentials
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation**: SAML 2.0 federation allows users to authenticate with corporate Active Directory and access AWS with temporary credentials via STS.
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation**: SAML 2.0 federation allows users to authenticate with corporate Active Directory and access AWS with temporary credentials via STS.
 
 ### Question 5
 **Which IAM entity can be used to define permissions but cannot have permissions attached directly to it?**
@@ -698,13 +686,10 @@ B) IAM Group
 C) IAM Role  
 D) IAM Policy
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation**: IAM groups are used to organize users and assign permissions, but policies are attached to the group, not permissions directly. Also, groups cannot be nested.
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation**: IAM groups are used to organize users and assign permissions, but policies are attached to the group, not permissions directly. Also, groups cannot be nested.
 
 ### Question 6
 **A solutions architect needs to provide an external company temporary access to an S3 bucket for 7 days. What is the BEST approach?**
@@ -714,13 +699,10 @@ B) Make the S3 bucket public
 C) Create an IAM role and share the assume role credentials  
 D) Share the AWS account password
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation**: IAM roles can be assumed by external entities using trust policies. The external company can assume the role to get temporary credentials. After 7 days, you can remove the role or modify the trust policy.
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation**: IAM roles can be assumed by external entities using trust policies. The external company can assume the role to get temporary credentials. After 7 days, you can remove the role or modify the trust policy.
 
 ---
 

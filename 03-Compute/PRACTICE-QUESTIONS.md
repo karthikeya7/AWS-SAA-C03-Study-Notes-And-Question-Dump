@@ -14,26 +14,23 @@ B. Reserved Instances
 C. Spot Instances  
 D. Dedicated Hosts  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- Spot Instances offer up to 90% discount compared to On-Demand
-- Can be interrupted with 2-minute warning when AWS needs capacity
-- Perfect for fault-tolerant, flexible workloads
-- **Ideal Use Cases**: Batch jobs, data analysis, image processing, CI/CD
-- Option A: On-Demand is most expensive
-- Option B: Reserved requires 1-3 year commitment
-- Option D: Dedicated Hosts are most expensive, for compliance
-
-**Key Points**:
-- Spot = Cheapest, can be interrupted
-- Best for: Stateless, fault-tolerant, flexible workloads
-
-**References:** EC2 Pricing Models, Spot Instances
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - Spot Instances offer up to 90% discount compared to On-Demand
+> - Can be interrupted with 2-minute warning when AWS needs capacity
+> - Perfect for fault-tolerant, flexible workloads
+> - **Ideal Use Cases**: Batch jobs, data analysis, image processing, CI/CD
+> - Option A: On-Demand is most expensive
+> - Option B: Reserved requires 1-3 year commitment
+> - Option D: Dedicated Hosts are most expensive, for compliance
+>
+> **Key Points**:
+> - Spot = Cheapest, can be interrupted
+> - Best for: Stateless, fault-tolerant, flexible workloads
+>
+> **References:** EC2 Pricing Models, Spot Instances
 
 ---
 
@@ -45,32 +42,29 @@ B. Simple Scaling
 C. Step Scaling  
 D. Scheduled Scaling  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: D**
-
-**Explanation:**
-- Scheduled Scaling scales based on predefined schedule
-- Perfect for predictable traffic patterns
-- Scales before traffic spike occurs (proactive)
-- Most cost-effective for known patterns
-
-**Schedule Example**:
-```bash
-aws autoscaling put-scheduled-update-group-action \
-  --auto-scaling-group-name my-asg \
-  --scheduled-action-name monday-morning-scale \
-  --recurrence "0 8 * * MON" \
-  --desired-capacity 10
-```
-
-- Option A: Target Tracking is reactive, scales after metric changes
-- Option B/C: Step/Simple scaling are reactive
-- **Scheduled = Proactive, Target/Step/Simple = Reactive**
-
-**References:** Auto Scaling Policies, Scheduled Scaling
-</details>
+> [!success]- Show Answer
+> **Answer: D**
+>
+> **Explanation:**
+> - Scheduled Scaling scales based on predefined schedule
+> - Perfect for predictable traffic patterns
+> - Scales before traffic spike occurs (proactive)
+> - Most cost-effective for known patterns
+>
+> **Schedule Example**:
+> ```bash
+> aws autoscaling put-scheduled-update-group-action \
+>   --auto-scaling-group-name my-asg \
+>   --scheduled-action-name monday-morning-scale \
+>   --recurrence "0 8 * * MON" \
+>   --desired-capacity 10
+> ```
+>
+> - Option A: Target Tracking is reactive, scales after metric changes
+> - Option B/C: Step/Simple scaling are reactive
+> - **Scheduled = Proactive, Target/Step/Simple = Reactive**
+>
+> **References:** Auto Scaling Policies, Scheduled Scaling
 
 ---
 
@@ -82,33 +76,30 @@ B. Application Load Balancer
 C. Network Load Balancer  
 D. Gateway Load Balancer  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- **Application Load Balancer (ALB)** operates at Layer 7 (HTTP/HTTPS)
-- Advanced routing: path-based, host-based, header-based
-- WebSocket and HTTP/2 support
-- Perfect for modern web applications
-
-**ALB Features**:
-- Path-based routing: `/api/*` → API servers, `/images/*` → image servers
-- Host-based routing: `api.example.com` vs `www.example.com`
-- Query string/header routing
-- Fixed response, redirects
-- AWS WAF integration
-- Authentication (OIDC, Cognito)
-
-**Load Balancer Comparison**:
-- **CLB**: Legacy, Layer 4/7, basic
-- **ALB**: Layer 7, HTTP/HTTPS, advanced routing
-- **NLB**: Layer 4, TCP/UDP, ultra-high performance, static IP
-- **GLB**: Layer 3, third-party virtual appliances
-
-**References:** Application Load Balancer, ELB Types
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - **Application Load Balancer (ALB)** operates at Layer 7 (HTTP/HTTPS)
+> - Advanced routing: path-based, host-based, header-based
+> - WebSocket and HTTP/2 support
+> - Perfect for modern web applications
+>
+> **ALB Features**:
+> - Path-based routing: `/api/*` → API servers, `/images/*` → image servers
+> - Host-based routing: `api.example.com` vs `www.example.com`
+> - Query string/header routing
+> - Fixed response, redirects
+> - AWS WAF integration
+> - Authentication (OIDC, Cognito)
+>
+> **Load Balancer Comparison**:
+> - **CLB**: Legacy, Layer 4/7, basic
+> - **ALB**: Layer 7, HTTP/HTTPS, advanced routing
+> - **NLB**: Layer 4, TCP/UDP, ultra-high performance, static IP
+> - **GLB**: Layer 3, third-party virtual appliances
+>
+> **References:** Application Load Balancer, ELB Types
 
 ---
 
@@ -120,31 +111,28 @@ B. Network Load Balancer
 C. Classic Load Balancer  
 D. CloudFront  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- **Network Load Balancer (NLB)** operates at Layer 4 (TCP/UDP/TLS)
-- Handles millions of requests per second
-- Ultra-low latency (microseconds)
-- Static IP addresses (one per AZ)
-- Preserves source IP address
-
-**NLB Use Cases**:
-- Extreme performance requirements
-- Static/Elastic IP needed (whitelist in firewalls)
-- TCP/UDP traffic
-- PrivateLink endpoints
-- Game servers, IoT, real-time applications
-
-**NLB vs ALB**:
-- **NLB**: Layer 4, faster, static IP, TCP/UDP
-- **ALB**: Layer 7, advanced routing, HTTP/HTTPS
-
-**References:** Network Load Balancer, Layer 4 vs Layer 7
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - **Network Load Balancer (NLB)** operates at Layer 4 (TCP/UDP/TLS)
+> - Handles millions of requests per second
+> - Ultra-low latency (microseconds)
+> - Static IP addresses (one per AZ)
+> - Preserves source IP address
+>
+> **NLB Use Cases**:
+> - Extreme performance requirements
+> - Static/Elastic IP needed (whitelist in firewalls)
+> - TCP/UDP traffic
+> - PrivateLink endpoints
+> - Game servers, IoT, real-time applications
+>
+> **NLB vs ALB**:
+> - **NLB**: Layer 4, faster, static IP, TCP/UDP
+> - **ALB**: Layer 7, advanced routing, HTTP/HTTPS
+>
+> **References:** Network Load Balancer, Layer 4 vs Layer 7
 
 ---
 
@@ -156,35 +144,32 @@ B. AWS Lambda
 C. Amazon ECS  
 D. AWS Elastic Beanstalk  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- **AWS Lambda** is serverless compute service
-- Event-driven execution
-- Automatic scaling (1 to 1000s of concurrent executions)
-- Pay only for compute time (per millisecond)
-- No server management
-
-**Lambda Characteristics**:
-- **Max execution time**: 15 minutes
-- **Memory**: 128 MB to 10,240 MB
-- **Deployment package**: 50 MB (zipped), 250 MB (unzipped)
-- **Concurrent executions**: 1000 (default, can increase)
-- **Billing**: Per request + compute time (GB-seconds)
-
-**Lambda Triggers**:
-- API Gateway (REST APIs)
-- S3 events
-- DynamoDB Streams
-- EventBridge (scheduled/event-based)
-- SNS, SQS
-- Kinesis
-
-**References:** AWS Lambda, Serverless Computing
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - **AWS Lambda** is serverless compute service
+> - Event-driven execution
+> - Automatic scaling (1 to 1000s of concurrent executions)
+> - Pay only for compute time (per millisecond)
+> - No server management
+>
+> **Lambda Characteristics**:
+> - **Max execution time**: 15 minutes
+> - **Memory**: 128 MB to 10,240 MB
+> - **Deployment package**: 50 MB (zipped), 250 MB (unzipped)
+> - **Concurrent executions**: 1000 (default, can increase)
+> - **Billing**: Per request + compute time (GB-seconds)
+>
+> **Lambda Triggers**:
+> - API Gateway (REST APIs)
+> - S3 events
+> - DynamoDB Streams
+> - EventBridge (scheduled/event-based)
+> - SNS, SQS
+> - Kinesis
+>
+> **References:** AWS Lambda, Serverless Computing
 
 ---
 
@@ -196,41 +181,38 @@ B. Step Scaling
 C. Target Tracking Scaling  
 D. Predictive Scaling  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- **Target Tracking Scaling** automatically adjusts capacity to maintain target metric
-- Specify target value (e.g., 50% CPU), Auto Scaling does the rest
-- Easiest to configure and manage
-- Creates and manages CloudWatch alarms automatically
-
-**Configuration Example**:
-```json
-{
-  "TargetValue": 50.0,
-  "PredefinedMetricSpecification": {
-    "PredefinedMetricType": "ASGAverageCPUUtilization"
-  }
-}
-```
-
-**Predefined Metrics**:
-- `ASGAverageCPUUtilization`
-- `ASGAverageNetworkIn`
-- `ASGAverageNetworkOut`
-- `ALBRequestCountPerTarget`
-
-**Scaling Policy Types**:
-- **Target Tracking**: Maintain specific metric value (EASIEST)
-- **Step**: Add/remove capacity based on CloudWatch alarm thresholds
-- **Simple**: Single scaling adjustment (legacy)
-- **Predictive**: ML-based forecasting
-
-**References:** Target Tracking Scaling, Auto Scaling Policies
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - **Target Tracking Scaling** automatically adjusts capacity to maintain target metric
+> - Specify target value (e.g., 50% CPU), Auto Scaling does the rest
+> - Easiest to configure and manage
+> - Creates and manages CloudWatch alarms automatically
+>
+> **Configuration Example**:
+> ```json
+> {
+>   "TargetValue": 50.0,
+>   "PredefinedMetricSpecification": {
+>     "PredefinedMetricType": "ASGAverageCPUUtilization"
+>   }
+> }
+> ```
+>
+> **Predefined Metrics**:
+> - `ASGAverageCPUUtilization`
+> - `ASGAverageNetworkIn`
+> - `ASGAverageNetworkOut`
+> - `ALBRequestCountPerTarget`
+>
+> **Scaling Policy Types**:
+> - **Target Tracking**: Maintain specific metric value (EASIEST)
+> - **Step**: Add/remove capacity based on CloudWatch alarm thresholds
+> - **Simple**: Single scaling adjustment (legacy)
+> - **Predictive**: ML-based forecasting
+>
+> **References:** Target Tracking Scaling, Auto Scaling Policies
 
 ---
 
@@ -242,38 +224,35 @@ B. Amazon ECS with Fargate launch type
 C. Amazon EKS  
 D. AWS Elastic Beanstalk  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- **AWS Fargate** is serverless container platform
-- No EC2 instance management required
-- Pay for vCPU and memory resources used
-- Works with both ECS and EKS
-
-**Container Service Options**:
-
-| Service | Description | Management |
-|---------|-------------|------------|
-| **ECS + EC2** | Container orchestration on EC2 | Manage instances |
-| **ECS + Fargate** | Serverless containers | No instance management |
-| **EKS + EC2** | Kubernetes on EC2 | Manage instances + K8s |
-| **EKS + Fargate** | Serverless Kubernetes | No instance management |
-
-**Fargate Benefits**:
-- No instance provisioning/scaling
-- No patching/securing instances
-- Pay per task
-- Simpler operations
-
-**When to use Fargate vs EC2**:
-- **Fargate**: Simplicity, less operational overhead
-- **EC2**: Need specific instance types, GPU, cost optimization for sustained workloads
-
-**References:** AWS Fargate, Amazon ECS
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - **AWS Fargate** is serverless container platform
+> - No EC2 instance management required
+> - Pay for vCPU and memory resources used
+> - Works with both ECS and EKS
+>
+> **Container Service Options**:
+>
+> | Service | Description | Management |
+> |---------|-------------|------------|
+> | **ECS + EC2** | Container orchestration on EC2 | Manage instances |
+> | **ECS + Fargate** | Serverless containers | No instance management |
+> | **EKS + EC2** | Kubernetes on EC2 | Manage instances + K8s |
+> | **EKS + Fargate** | Serverless Kubernetes | No instance management |
+>
+> **Fargate Benefits**:
+> - No instance provisioning/scaling
+> - No patching/securing instances
+> - Pay per task
+> - Simpler operations
+>
+> **When to use Fargate vs EC2**:
+> - **Fargate**: Simplicity, less operational overhead
+> - **EC2**: Need specific instance types, GPU, cost optimization for sustained workloads
+>
+> **References:** AWS Fargate, Amazon ECS
 
 ---
 
@@ -285,37 +264,34 @@ B. Spread Placement Group
 C. Partition Placement Group  
 D. No placement group needed  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: A**
-
-**Explanation:**
-- **Cluster Placement Group** places instances close together in single AZ
-- Low-latency network (10 Gbps between instances)
-- High throughput, enhanced networking
-- All instances in same rack/physical proximity
-
-**Placement Group Types**:
-
-| Type | Purpose | AZ | Max Instances |
-|------|---------|----|----|
-| **Cluster** | Low latency, high throughput | Single AZ | Limited by instance type |
-| **Spread** | Reduce correlated failures | Multi-AZ | 7 per AZ |
-| **Partition** | Large distributed workloads | Multi-AZ | 7 partitions per AZ |
-
-**Use Cases**:
-- **Cluster**: HPC, big data, low-latency apps
-- **Spread**: Critical applications (each instance separate rack)
-- **Partition**: Hadoop, Cassandra, Kafka (partition = rack)
-
-**Limitations**:
-- Cluster: Single AZ only
-- Spread: Max 7 instances per AZ
-- Not all instance types supported
-
-**References:** EC2 Placement Groups
-</details>
+> [!success]- Show Answer
+> **Answer: A**
+>
+> **Explanation:**
+> - **Cluster Placement Group** places instances close together in single AZ
+> - Low-latency network (10 Gbps between instances)
+> - High throughput, enhanced networking
+> - All instances in same rack/physical proximity
+>
+> **Placement Group Types**:
+>
+> | Type | Purpose | AZ | Max Instances |
+> |------|---------|----|----|
+> | **Cluster** | Low latency, high throughput | Single AZ | Limited by instance type |
+> | **Spread** | Reduce correlated failures | Multi-AZ | 7 per AZ |
+> | **Partition** | Large distributed workloads | Multi-AZ | 7 partitions per AZ |
+>
+> **Use Cases**:
+> - **Cluster**: HPC, big data, low-latency apps
+> - **Spread**: Critical applications (each instance separate rack)
+> - **Partition**: Hadoop, Cassandra, Kafka (partition = rack)
+>
+> **Limitations**:
+> - Cluster: Single AZ only
+> - Spread: Max 7 instances per AZ
+> - Not all instance types supported
+>
+> **References:** EC2 Placement Groups
 
 ---
 
@@ -327,39 +303,36 @@ B. Amazon EC2 with Auto Scaling
 C. AWS Elastic Beanstalk  
 D. Amazon Lightsail  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- **AWS Elastic Beanstalk** is PaaS (Platform as a Service)
-- Upload code, Beanstalk handles deployment
-- Automatic provisioning: EC2, ALB, Auto Scaling, RDS, monitoring
-- Multiple platforms: Java, .NET, PHP, Node.js, Python, Ruby, Go, Docker
-
-**Elastic Beanstalk Features**:
-- Automatic capacity provisioning
-- Load balancing
-- Auto Scaling
-- Health monitoring
-- Platform updates
-- Still have full control over resources (not completely abstracted)
-
-**Deployment Options**:
-- **All at once**: Fastest, downtime
-- **Rolling**: Partial batches, reduced capacity
-- **Rolling with additional batch**: Maintains full capacity
-- **Immutable**: New instances, safest
-- **Blue/Green**: Manual via swap URLs
-
-**Beanstalk vs Others**:
-- **Lambda**: Functions, not full applications
-- **EC2 + Auto Scaling**: More manual configuration
-- **Lightsail**: Simpler, less scalable
-
-**References:** AWS Elastic Beanstalk, PaaS
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - **AWS Elastic Beanstalk** is PaaS (Platform as a Service)
+> - Upload code, Beanstalk handles deployment
+> - Automatic provisioning: EC2, ALB, Auto Scaling, RDS, monitoring
+> - Multiple platforms: Java, .NET, PHP, Node.js, Python, Ruby, Go, Docker
+>
+> **Elastic Beanstalk Features**:
+> - Automatic capacity provisioning
+> - Load balancing
+> - Auto Scaling
+> - Health monitoring
+> - Platform updates
+> - Still have full control over resources (not completely abstracted)
+>
+> **Deployment Options**:
+> - **All at once**: Fastest, downtime
+> - **Rolling**: Partial batches, reduced capacity
+> - **Rolling with additional batch**: Maintains full capacity
+> - **Immutable**: New instances, safest
+> - **Blue/Green**: Manual via swap URLs
+>
+> **Beanstalk vs Others**:
+> - **Lambda**: Functions, not full applications
+> - **EC2 + Auto Scaling**: More manual configuration
+> - **Lightsail**: Simpler, less scalable
+>
+> **References:** AWS Elastic Beanstalk, PaaS
 
 ---
 
@@ -371,36 +344,33 @@ B. Savings Plans
 C. On-Demand Capacity Reservations  
 D. Spot Instances  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- **On-Demand Capacity Reservations** reserve capacity in specific AZ
-- No long-term commitment (can cancel anytime)
-- Charged at On-Demand rates whether used or not
-- Ensures capacity availability when needed
-
-**Capacity Options Comparison**:
-
-| Option | Commitment | Discount | Capacity Guarantee |
-|--------|------------|----------|-------------------|
-| **On-Demand** | None | None | No guarantee |
-| **Reserved** | 1-3 years | Up to 72% | Yes (regional or zonal) |
-| **Savings Plans** | 1-3 years | Up to 66% | No |
-| **Capacity Reservations** | None | None | Yes (zonal) |
-| **Spot** | None | Up to 90% | No (can be interrupted) |
-
-**Use Case**:
-- Disaster recovery (reserve capacity but don't always run)
-- Business-critical events (Black Friday)
-- Regulatory/compliance requirements
-
-**Cost Optimization**: Combine Capacity Reservation with Savings Plan
-
-**References:** On-Demand Capacity Reservations
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - **On-Demand Capacity Reservations** reserve capacity in specific AZ
+> - No long-term commitment (can cancel anytime)
+> - Charged at On-Demand rates whether used or not
+> - Ensures capacity availability when needed
+>
+> **Capacity Options Comparison**:
+>
+> | Option | Commitment | Discount | Capacity Guarantee |
+> |--------|------------|----------|-------------------|
+> | **On-Demand** | None | None | No guarantee |
+> | **Reserved** | 1-3 years | Up to 72% | Yes (regional or zonal) |
+> | **Savings Plans** | 1-3 years | Up to 66% | No |
+> | **Capacity Reservations** | None | None | Yes (zonal) |
+> | **Spot** | None | Up to 90% | No (can be interrupted) |
+>
+> **Use Case**:
+> - Disaster recovery (reserve capacity but don't always run)
+> - Business-critical events (Black Friday)
+> - Regulatory/compliance requirements
+>
+> **Cost Optimization**: Combine Capacity Reservation with Savings Plan
+>
+> **References:** On-Demand Capacity Reservations
 
 ---
 
@@ -412,36 +382,33 @@ B. Increase Lambda timeout setting
 C. Use Lambda layers  
 D. Switch to EC2  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Lambda default timeout is 3 seconds
-- Can be increased up to 15 minutes (900 seconds)
-- Timeout configuration is separate from memory
-
-**Lambda Configuration**:
-- **Memory**: 128 MB to 10,240 MB (10 GB)
-- **Timeout**: 1 second to 900 seconds (15 minutes)
-- **CPU scales with memory** (1,792 MB = 1 vCPU)
-- **Ephemeral storage (/tmp)**: 512 MB to 10,240 MB
-
-**Performance Tuning**:
-1. Increase timeout for long-running tasks
-2. Increase memory if CPU-bound (CPU scales with memory)
-3. Optimize code
-4. Use async patterns for very long tasks
-
-**When Lambda is NOT suitable**:
-- Tasks > 15 minutes
-- Need GPU
-- Stateful applications
-- Real-time latency requirements (cold starts)
-
-**References:** Lambda Configuration, Lambda Limits
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Lambda default timeout is 3 seconds
+> - Can be increased up to 15 minutes (900 seconds)
+> - Timeout configuration is separate from memory
+>
+> **Lambda Configuration**:
+> - **Memory**: 128 MB to 10,240 MB (10 GB)
+> - **Timeout**: 1 second to 900 seconds (15 minutes)
+> - **CPU scales with memory** (1,792 MB = 1 vCPU)
+> - **Ephemeral storage (/tmp)**: 512 MB to 10,240 MB
+>
+> **Performance Tuning**:
+> 1. Increase timeout for long-running tasks
+> 2. Increase memory if CPU-bound (CPU scales with memory)
+> 3. Optimize code
+> 4. Use async patterns for very long tasks
+>
+> **When Lambda is NOT suitable**:
+> - Tasks > 15 minutes
+> - Need GPU
+> - Stateful applications
+> - Real-time latency requirements (cold starts)
+>
+> **References:** Lambda Configuration, Lambda Limits
 
 ---
 
@@ -453,36 +420,33 @@ B. Dedicated Hosts
 C. Reserved Instances  
 D. Spot Instances  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- **Dedicated Hosts**: Physical server dedicated to your use
-- Visibility into sockets, cores, host ID
-- Support for BYOL (Bring Your Own License) - Windows Server, SQL Server
-- Meet compliance requirements
-- Most expensive option
-
-**Dedicated Instances vs Dedicated Hosts**:
-
-| Feature | Dedicated Instances | Dedicated Hosts |
-|---------|-------------------|----------------|
-| **Isolation** | Instance-level | Physical server |
-| **Visibility** | No hardware visibility | Socket/core visibility |
-| **BYOL** | Not supported | Supported |
-| **Placement** | Automatic | Control placement |
-| **Billing** | Per instance | Per host |
-| **Use Case** | Compliance (soft requirement) | BYOL, compliance (strict) |
-
-**Use Cases for Dedicated Hosts**:
-- Server-bound software licenses
-- Regulatory compliance
-- Track physical host usage
-
-**References:** Dedicated Hosts, Dedicated Instances, BYOL
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - **Dedicated Hosts**: Physical server dedicated to your use
+> - Visibility into sockets, cores, host ID
+> - Support for BYOL (Bring Your Own License) - Windows Server, SQL Server
+> - Meet compliance requirements
+> - Most expensive option
+>
+> **Dedicated Instances vs Dedicated Hosts**:
+>
+> | Feature | Dedicated Instances | Dedicated Hosts |
+> |---------|-------------------|----------------|
+> | **Isolation** | Instance-level | Physical server |
+> | **Visibility** | No hardware visibility | Socket/core visibility |
+> | **BYOL** | Not supported | Supported |
+> | **Placement** | Automatic | Control placement |
+> | **Billing** | Per instance | Per host |
+> | **Use Case** | Compliance (soft requirement) | BYOL, compliance (strict) |
+>
+> **Use Cases for Dedicated Hosts**:
+> - Server-bound software licenses
+> - Regulatory compliance
+> - Track physical host usage
+>
+> **References:** Dedicated Hosts, Dedicated Instances, BYOL
 
 ---
 
@@ -494,34 +458,31 @@ B. Auto Scaling launches 3 new instances
 C. Auto Scaling does nothing  
 D. Auto Scaling sends an alert  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- Auto Scaling maintains desired capacity
-- If instances are terminated (manually or automatically), ASG replaces them
-- Ensures desired count is maintained
-
-**Auto Scaling Group Configuration**:
-- **Minimum**: Minimum number of instances
-- **Desired**: Target number of instances
-- **Maximum**: Maximum number of instances
-
-**Scaling Activities**:
-- Scale out: Launch instances (desired < current)
-- Scale in: Terminate instances (desired > current)
-- Replace unhealthy: Terminate and replace
-- Rebalance across AZs
-
-**Instance Protection**:
-- Can enable scale-in protection on specific instances
-- Prevents Auto Scaling from terminating protected instances
-- Manual termination still works
-
-**References:** Auto Scaling Groups, Desired Capacity
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - Auto Scaling maintains desired capacity
+> - If instances are terminated (manually or automatically), ASG replaces them
+> - Ensures desired count is maintained
+>
+> **Auto Scaling Group Configuration**:
+> - **Minimum**: Minimum number of instances
+> - **Desired**: Target number of instances
+> - **Maximum**: Maximum number of instances
+>
+> **Scaling Activities**:
+> - Scale out: Launch instances (desired < current)
+> - Scale in: Terminate instances (desired > current)
+> - Replace unhealthy: Terminate and replace
+> - Rebalance across AZs
+>
+> **Instance Protection**:
+> - Can enable scale-in protection on specific instances
+> - Prevents Auto Scaling from terminating protected instances
+> - Manual termination still works
+>
+> **References:** Auto Scaling Groups, Desired Capacity
 
 ---
 
@@ -533,42 +494,39 @@ B. Amazon SNS
 C. AWS Step Functions  
 D. Amazon EventBridge  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- **AWS Step Functions** orchestrates serverless workflows
-- Coordinate multiple Lambda functions
-- Built-in error handling, retries, parallel execution
-- Visual workflow designer
-
-**Step Functions Features**:
-- **State machine**: Define workflow as states
-- **Error handling**: Catch errors, retry logic
-- **Parallel execution**: Run steps concurrently
-- **Wait states**: Delays between steps
-- **Choice states**: Conditional logic
-- **Map states**: Iterate over arrays
-
-**Workflow Types**:
-- **Standard**: Long-running (up to 1 year), exactly-once execution
-- **Express**: Short-lived (5 min), at-least-once, high-rate
-
-**Use Cases**:
-- ETL pipelines
-- Order processing
-- Video processing
-- Machine learning workflows
-
-**Step Functions vs Alternatives**:
-- **SQS**: Message queue, no orchestration
-- **SNS**: Pub/sub messaging, no orchestration
-- **EventBridge**: Event routing, simpler workflows
-
-**References:** AWS Step Functions, Serverless Orchestration
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - **AWS Step Functions** orchestrates serverless workflows
+> - Coordinate multiple Lambda functions
+> - Built-in error handling, retries, parallel execution
+> - Visual workflow designer
+>
+> **Step Functions Features**:
+> - **State machine**: Define workflow as states
+> - **Error handling**: Catch errors, retry logic
+> - **Parallel execution**: Run steps concurrently
+> - **Wait states**: Delays between steps
+> - **Choice states**: Conditional logic
+> - **Map states**: Iterate over arrays
+>
+> **Workflow Types**:
+> - **Standard**: Long-running (up to 1 year), exactly-once execution
+> - **Express**: Short-lived (5 min), at-least-once, high-rate
+>
+> **Use Cases**:
+> - ETL pipelines
+> - Order processing
+> - Video processing
+> - Machine learning workflows
+>
+> **Step Functions vs Alternatives**:
+> - **SQS**: Message queue, no orchestration
+> - **SNS**: Pub/sub messaging, no orchestration
+> - **EventBridge**: Event routing, simpler workflows
+>
+> **References:** AWS Step Functions, Serverless Orchestration
 
 ---
 
@@ -580,44 +538,41 @@ B. C5 (Compute Optimized)
 C. T3 (Burstable Performance)  
 D. R5 (Memory Optimized)  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- **T3/T4g instances** are burstable performance instances
-- Baseline CPU performance with credit system
-- Accumulate CPU credits when below baseline
-- Burst above baseline using credits
-- Cost-effective for variable workloads
-
-**T3 CPU Credits**:
-- Baseline performance depends on instance size
-- Earn credits when CPU < baseline
-- Spend credits when CPU > baseline
-- **Unlimited mode**: Can burst beyond credits (additional charges)
-
-**T3 Instance Types**:
-- t3.nano: 5% baseline
-- t3.micro: 10% baseline
-- t3.small: 20% baseline
-- t3.medium: 20% baseline
-- t3.large: 30% baseline
-
-**Use Cases**:
-- Web servers, dev/test
-- Small databases
-- Code repositories
-- Microservices
-
-**When NOT to use T3**:
-- Sustained high CPU usage
-- Predictable high performance needs
-- Use C5/M5 for sustained performance
-
-**References:** T3 Instances, Burstable Performance, CPU Credits
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - **T3/T4g instances** are burstable performance instances
+> - Baseline CPU performance with credit system
+> - Accumulate CPU credits when below baseline
+> - Burst above baseline using credits
+> - Cost-effective for variable workloads
+>
+> **T3 CPU Credits**:
+> - Baseline performance depends on instance size
+> - Earn credits when CPU < baseline
+> - Spend credits when CPU > baseline
+> - **Unlimited mode**: Can burst beyond credits (additional charges)
+>
+> **T3 Instance Types**:
+> - t3.nano: 5% baseline
+> - t3.micro: 10% baseline
+> - t3.small: 20% baseline
+> - t3.medium: 20% baseline
+> - t3.large: 30% baseline
+>
+> **Use Cases**:
+> - Web servers, dev/test
+> - Small databases
+> - Code repositories
+> - Microservices
+>
+> **When NOT to use T3**:
+> - Sustained high CPU usage
+> - Predictable high performance needs
+> - Use C5/M5 for sustained performance
+>
+> **References:** T3 Instances, Burstable Performance, CPU Credits
 
 ---
 
@@ -629,40 +584,37 @@ B. Amazon EKS
 C. AWS Fargate  
 D. AWS Elastic Beanstalk  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: B**
-
-**Explanation:**
-- **Amazon EKS** (Elastic Kubernetes Service) is managed Kubernetes
-- AWS manages Kubernetes control plane
-- Compatible with standard Kubernetes tools (kubectl, Helm)
-- Multi-AZ control plane for high availability
-
-**EKS Features**:
-- Managed K8s control plane (etcd, API server)
-- Automatic upgrades and patches
-- Integrate with AWS services (IAM, VPC, ALB, CloudWatch)
-- CNCF certified (standard Kubernetes)
-
-**EKS Worker Nodes Options**:
-- **Self-managed nodes**: You manage EC2 instances
-- **Managed node groups**: AWS manages EC2 lifecycle
-- **Fargate**: Serverless, no node management
-
-**ECS vs EKS**:
-- **ECS**: AWS-proprietary, simpler, tight AWS integration
-- **EKS**: Standard Kubernetes, portable, more complex, existing K8s expertise
-
-**When to use EKS**:
-- Existing Kubernetes workloads
-- Kubernetes expertise in team
-- Multi-cloud/hybrid requirements
-- Standard Kubernetes tools needed
-
-**References:** Amazon EKS, Kubernetes on AWS
-</details>
+> [!success]- Show Answer
+> **Answer: B**
+>
+> **Explanation:**
+> - **Amazon EKS** (Elastic Kubernetes Service) is managed Kubernetes
+> - AWS manages Kubernetes control plane
+> - Compatible with standard Kubernetes tools (kubectl, Helm)
+> - Multi-AZ control plane for high availability
+>
+> **EKS Features**:
+> - Managed K8s control plane (etcd, API server)
+> - Automatic upgrades and patches
+> - Integrate with AWS services (IAM, VPC, ALB, CloudWatch)
+> - CNCF certified (standard Kubernetes)
+>
+> **EKS Worker Nodes Options**:
+> - **Self-managed nodes**: You manage EC2 instances
+> - **Managed node groups**: AWS manages EC2 lifecycle
+> - **Fargate**: Serverless, no node management
+>
+> **ECS vs EKS**:
+> - **ECS**: AWS-proprietary, simpler, tight AWS integration
+> - **EKS**: Standard Kubernetes, portable, more complex, existing K8s expertise
+>
+> **When to use EKS**:
+> - Existing Kubernetes workloads
+> - Kubernetes expertise in team
+> - Multi-cloud/hybrid requirements
+> - Standard Kubernetes tools needed
+>
+> **References:** Amazon EKS, Kubernetes on AWS
 
 ---
 
@@ -674,37 +626,34 @@ B. ELB Health Checks
 C. Auto Scaling Health Check Grace Period  
 D. CloudWatch Alarms  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- **Health Check Grace Period** gives instances time to boot and pass checks
-- Prevents premature termination during initialization
-- Default: 300 seconds (5 minutes)
-- Should be longer than application startup time
-
-**Auto Scaling Health Checks**:
-- **EC2 health check**: Instance running (default)
-- **ELB health check**: Instance passes load balancer health checks
-- Grace period applies to both types
-
-**Recommended Configuration**:
-1. Set grace period > application startup time
-2. Enable ELB health checks
-3. Configure ELB health check with appropriate interval/threshold
-
-**Example**:
-```bash
-aws autoscaling create-auto-scaling-group \
-  --auto-scaling-group-name my-asg \
-  --health-check-type ELB \
-  --health-check-grace-period 600  # 10 minutes
-```
-
-**References:** Auto Scaling Health Checks, Grace Period
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - **Health Check Grace Period** gives instances time to boot and pass checks
+> - Prevents premature termination during initialization
+> - Default: 300 seconds (5 minutes)
+> - Should be longer than application startup time
+>
+> **Auto Scaling Health Checks**:
+> - **EC2 health check**: Instance running (default)
+> - **ELB health check**: Instance passes load balancer health checks
+> - Grace period applies to both types
+>
+> **Recommended Configuration**:
+> 1. Set grace period > application startup time
+> 2. Enable ELB health checks
+> 3. Configure ELB health check with appropriate interval/threshold
+>
+> **Example**:
+> ```bash
+> aws autoscaling create-auto-scaling-group \
+>   --auto-scaling-group-name my-asg \
+>   --health-check-type ELB \
+>   --health-check-grace-period 600  # 10 minutes
+> ```
+>
+> **References:** Auto Scaling Health Checks, Grace Period
 
 ---
 
@@ -716,38 +665,35 @@ B. Amazon ECS
 C. Amazon EC2  
 D. AWS Fargate  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- **Amazon EC2** for lift-and-shift migrations
-- Run Windows Server, install applications as-is
-- Minimal refactoring required
-- Full control over OS and configuration
-
-**Migration Strategies (6 R's)**:
-1. **Rehost (Lift-and-Shift)**: Move as-is to EC2
-2. **Replatform (Lift-Tinker-Shift)**: Minor optimizations
-3. **Repurchase**: Move to SaaS
-4. **Refactor/Re-architect**: Redesign for cloud-native
-5. **Retire**: Decommission
-6. **Retain**: Keep on-premises
-
-**Lift-and-Shift Approach**:
-- Quick migration
-- Minimal risk
-- Can optimize later
-- Use AWS Application Migration Service (MGN)
-
-**Other Options Not Suitable**:
-- Lambda: Requires code changes, event-driven
-- ECS/Fargate: Requires containerization
-- EC2 is best for "as-is" Windows applications
-
-**References:** Migration Strategies, EC2 for Windows
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - **Amazon EC2** for lift-and-shift migrations
+> - Run Windows Server, install applications as-is
+> - Minimal refactoring required
+> - Full control over OS and configuration
+>
+> **Migration Strategies (6 R's)**:
+> 1. **Rehost (Lift-and-Shift)**: Move as-is to EC2
+> 2. **Replatform (Lift-Tinker-Shift)**: Minor optimizations
+> 3. **Repurchase**: Move to SaaS
+> 4. **Refactor/Re-architect**: Redesign for cloud-native
+> 5. **Retire**: Decommission
+> 6. **Retain**: Keep on-premises
+>
+> **Lift-and-Shift Approach**:
+> - Quick migration
+> - Minimal risk
+> - Can optimize later
+> - Use AWS Application Migration Service (MGN)
+>
+> **Other Options Not Suitable**:
+> - Lambda: Requires code changes, event-driven
+> - ECS/Fargate: Requires containerization
+> - EC2 is best for "as-is" Windows applications
+>
+> **References:** Migration Strategies, EC2 for Windows
 
 ---
 
@@ -759,35 +705,32 @@ B. Enable Lambda reserved concurrency
 C. Lambda automatically scales concurrently  
 D. Use Step Functions  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- Lambda automatically scales to handle concurrent invocations
-- Each S3 event triggers separate Lambda invocation
-- Default account concurrency: 1000 (can request increase)
-- No configuration needed for basic scaling
-
-**Lambda Concurrency Types**:
-- **Account concurrency**: Total concurrent executions across all functions (1000 default)
-- **Reserved concurrency**: Dedicated concurrency for specific function
-- **Provisioned concurrency**: Pre-initialized instances (reduce cold starts)
-
-**When to use Reserved Concurrency**:
-- Limit function concurrency (prevent overwhelming downstream)
-- Guarantee concurrency for critical functions
-- Prevent one function from consuming all account concurrency
-
-**Example Scenario**:
-- 1000 files uploaded to S3
-- Lambda invoked 1000 times concurrently (within account limits)
-- If account limit is 1000, all execute immediately
-- If limit exceeded, some invocations throttled (429 error)
-
-**References:** Lambda Concurrency, Automatic Scaling
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - Lambda automatically scales to handle concurrent invocations
+> - Each S3 event triggers separate Lambda invocation
+> - Default account concurrency: 1000 (can request increase)
+> - No configuration needed for basic scaling
+>
+> **Lambda Concurrency Types**:
+> - **Account concurrency**: Total concurrent executions across all functions (1000 default)
+> - **Reserved concurrency**: Dedicated concurrency for specific function
+> - **Provisioned concurrency**: Pre-initialized instances (reduce cold starts)
+>
+> **When to use Reserved Concurrency**:
+> - Limit function concurrency (prevent overwhelming downstream)
+> - Guarantee concurrency for critical functions
+> - Prevent one function from consuming all account concurrency
+>
+> **Example Scenario**:
+> - 1000 files uploaded to S3
+> - Lambda invoked 1000 times concurrently (within account limits)
+> - If account limit is 1000, all execute immediately
+> - If limit exceeded, some invocations throttled (429 error)
+>
+> **References:** Lambda Concurrency, Automatic Scaling
 
 ---
 
@@ -799,39 +742,36 @@ B. Enable sticky sessions on ALB
 C. Store session data in Amazon ElastiCache or DynamoDB  
 D. Use NLB instead of ALB  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-**Explanation:**
-- **External session storage** (ElastiCache/DynamoDB) is best practice
-- Sessions accessible from any instance
-- Survives instance failures
-- True stateless architecture
-
-**Session Management Options**:
-
-| Option | Pros | Cons |
-|--------|------|------|
-| **ElastiCache/DynamoDB** | Stateless, scalable, resilient | Additional service |
-| **Sticky Sessions** | Simple | Uneven load, not resilient |
-| **Local Storage** | Fast | Lost on instance failure |
-
-**Why ElastiCache/DynamoDB is Better**:
-- ✅ Any instance can serve any request
-- ✅ Auto Scaling works properly
-- ✅ Instance failure doesn't lose sessions
-- ✅ Better load distribution
-
-**Sticky Sessions Issues**:
-- Uneven instance utilization
-- New instances get no traffic initially
-- Instance failure = lost sessions
-- Use only if refactoring is not possible
-
-**References:** Stateless Architecture, Session Management, ElastiCache
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> **Explanation:**
+> - **External session storage** (ElastiCache/DynamoDB) is best practice
+> - Sessions accessible from any instance
+> - Survives instance failures
+> - True stateless architecture
+>
+> **Session Management Options**:
+>
+> | Option | Pros | Cons |
+> |--------|------|------|
+> | **ElastiCache/DynamoDB** | Stateless, scalable, resilient | Additional service |
+> | **Sticky Sessions** | Simple | Uneven load, not resilient |
+> | **Local Storage** | Fast | Lost on instance failure |
+>
+> **Why ElastiCache/DynamoDB is Better**:
+> - ✅ Any instance can serve any request
+> - ✅ Auto Scaling works properly
+> - ✅ Instance failure doesn't lose sessions
+> - ✅ Better load distribution
+>
+> **Sticky Sessions Issues**:
+> - Uneven instance utilization
+> - New instances get no traffic initially
+> - Instance failure = lost sessions
+> - Use only if refactoring is not possible
+>
+> **References:** Stateless Architecture, Session Management, ElastiCache
 
 ---
 
@@ -843,21 +783,18 @@ B. Amazon EC2 Dedicated Hosts
 C. AWS Snowball Edge  
 D. AWS Direct Connect  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: A**
-
-**Explanation:**
-- AWS Outposts brings native AWS services, infrastructure, and operating models to on-premises data centers
-- Provides a consistent hybrid experience
-- Supports EC2, EBS, RDS, ECS, EKS, S3, and more
-- Dedicated Hosts are for compliance, not hybrid cloud
-- Snowball Edge is for edge computing and data transfer, not full AWS services
-- Direct Connect is for network connectivity, not running AWS services on-premises
-
-**References:** AWS Outposts, Hybrid Cloud
-</details>
+> [!success]- Show Answer
+> **Answer: A**
+>
+> **Explanation:**
+> - AWS Outposts brings native AWS services, infrastructure, and operating models to on-premises data centers
+> - Provides a consistent hybrid experience
+> - Supports EC2, EBS, RDS, ECS, EKS, S3, and more
+> - Dedicated Hosts are for compliance, not hybrid cloud
+> - Snowball Edge is for edge computing and data transfer, not full AWS services
+> - Direct Connect is for network connectivity, not running AWS services on-premises
+>
+> **References:** AWS Outposts, Hybrid Cloud
 
 ---
 
@@ -869,21 +806,18 @@ B. Amazon EC2 Auto Scaling
 C. AWS Lambda  
 D. Amazon EMR  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: A**
-
-**Explanation:**
-- AWS Batch is a fully managed batch computing service
-- Automatically provisions compute resources and schedules jobs
-- Supports Docker containers and EC2/Spot/Fargate
-- EC2 Auto Scaling is for scaling instances, not job scheduling
-- Lambda is for short-lived, event-driven compute
-- EMR is for big data processing, not general batch jobs
-
-**References:** AWS Batch, Batch Computing
-</details>
+> [!success]- Show Answer
+> **Answer: A**
+>
+> **Explanation:**
+> - AWS Batch is a fully managed batch computing service
+> - Automatically provisions compute resources and schedules jobs
+> - Supports Docker containers and EC2/Spot/Fargate
+> - EC2 Auto Scaling is for scaling instances, not job scheduling
+> - Lambda is for short-lived, event-driven compute
+> - EMR is for big data processing, not general batch jobs
+>
+> **References:** AWS Batch, Batch Computing
 
 ---
 
@@ -895,20 +829,17 @@ B. AWS Marketplace
 C. AWS Lambda Layers  
 D. AWS CloudFormation StackSets  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: A**
-
-**Explanation:**
-- AWS Serverless Application Repository is a managed repository for serverless apps
-- Allows sharing and deployment of Lambda-based applications
-- Marketplace is for commercial software, not serverless apps
-- Lambda Layers are for code sharing, not full applications
-- CloudFormation StackSets is for multi-account deployments
-
-**References:** AWS Serverless Application Repository, Serverless Deployment
-</details>
+> [!success]- Show Answer
+> **Answer: A**
+>
+> **Explanation:**
+> - AWS Serverless Application Repository is a managed repository for serverless apps
+> - Allows sharing and deployment of Lambda-based applications
+> - Marketplace is for commercial software, not serverless apps
+> - Lambda Layers are for code sharing, not full applications
+> - CloudFormation StackSets is for multi-account deployments
+>
+> **References:** AWS Serverless Application Repository, Serverless Deployment
 
 ---
 
@@ -920,21 +851,18 @@ B. AWS Outposts
 C. Amazon EC2 Dedicated Hosts  
 D. AWS Snowball Edge  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: A**
-
-**Explanation:**
-- VMware Cloud on AWS integrates VMware vSphere, NSX, and vSAN with AWS infrastructure
-- Enables seamless migration and hybrid operations
-- Managed by both AWS and VMware
-- Outposts is for running AWS services on-premises
-- Dedicated Hosts are for compliance
-- Snowball Edge is for edge computing
-
-**References:** VMware Cloud on AWS, Hybrid VMware
-</details>
+> [!success]- Show Answer
+> **Answer: A**
+>
+> **Explanation:**
+> - VMware Cloud on AWS integrates VMware vSphere, NSX, and vSAN with AWS infrastructure
+> - Enables seamless migration and hybrid operations
+> - Managed by both AWS and VMware
+> - Outposts is for running AWS services on-premises
+> - Dedicated Hosts are for compliance
+> - Snowball Edge is for edge computing
+>
+> **References:** VMware Cloud on AWS, Hybrid VMware
 
 ---
 
@@ -946,20 +874,17 @@ B. AWS Outposts
 C. Amazon CloudFront  
 D. AWS Direct Connect  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: A**
-
-**Explanation:**
-- AWS Wavelength brings AWS services to the edge of 5G networks
-- Enables ultra-low latency applications for mobile and edge devices
-- Outposts is for on-premises data centers
-- CloudFront is a CDN, not edge compute
-- Direct Connect is for network connectivity
-
-**References:** AWS Wavelength, Edge Computing
-</details>
+> [!success]- Show Answer
+> **Answer: A**
+>
+> **Explanation:**
+> - AWS Wavelength brings AWS services to the edge of 5G networks
+> - Enables ultra-low latency applications for mobile and edge devices
+> - Outposts is for on-premises data centers
+> - CloudFront is a CDN, not edge compute
+> - Direct Connect is for network connectivity
+>
+> **References:** AWS Wavelength, Edge Computing
 
 ---
 
@@ -971,20 +896,17 @@ B. AWS Outposts
 C. AWS Fargate  
 D. Amazon EC2 Dedicated Hosts  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: A**
-
-**Explanation:**
-- ECS Anywhere and EKS Anywhere extend container orchestration to on-premises infrastructure
-- Managed from AWS Console
-- Outposts is for running AWS infrastructure on-premises
-- Fargate is for serverless containers in AWS
-- Dedicated Hosts are for compliance
-
-**References:** ECS Anywhere, EKS Anywhere, Hybrid Containers
-</details>
+> [!success]- Show Answer
+> **Answer: A**
+>
+> **Explanation:**
+> - ECS Anywhere and EKS Anywhere extend container orchestration to on-premises infrastructure
+> - Managed from AWS Console
+> - Outposts is for running AWS infrastructure on-premises
+> - Fargate is for serverless containers in AWS
+> - Dedicated Hosts are for compliance
+>
+> **References:** ECS Anywhere, EKS Anywhere, Hybrid Containers
 
 ---
 
@@ -996,19 +918,16 @@ B. Amazon DynamoDB
 C. Amazon RDS for PostgreSQL  
 D. Amazon Aurora  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: A**
-
-**Explanation:**
-- Amazon Keyspaces is a managed Cassandra-compatible database
-- Supports Cassandra Query Language (CQL)
-- DynamoDB is NoSQL but not Cassandra-compatible
-- RDS and Aurora are relational databases
-
-**References:** Amazon Keyspaces, Managed Cassandra
-</details>
+> [!success]- Show Answer
+> **Answer: A**
+>
+> **Explanation:**
+> - Amazon Keyspaces is a managed Cassandra-compatible database
+> - Supports Cassandra Query Language (CQL)
+> - DynamoDB is NoSQL but not Cassandra-compatible
+> - RDS and Aurora are relational databases
+>
+> **References:** Amazon Keyspaces, Managed Cassandra
 
 ---
 
@@ -1020,18 +939,15 @@ B. Amazon Aurora
 C. Amazon RDS  
 D. Amazon DynamoDB  
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: A**
-
-**Explanation:**
-- Amazon QLDB (Quantum Ledger Database) is a fully managed ledger database
-- Provides immutable, cryptographically verifiable transaction log
-- Aurora, RDS, and DynamoDB are not ledger databases
-
-**References:** Amazon QLDB, Ledger Database
-</details>
+> [!success]- Show Answer
+> **Answer: A**
+>
+> **Explanation:**
+> - Amazon QLDB (Quantum Ledger Database) is a fully managed ledger database
+> - Provides immutable, cryptographically verifiable transaction log
+> - Aurora, RDS, and DynamoDB are not ledger databases
+>
+> **References:** Amazon QLDB, Ledger Database
 
 ---
 

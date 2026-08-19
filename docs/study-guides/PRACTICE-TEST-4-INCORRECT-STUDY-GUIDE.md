@@ -507,27 +507,24 @@ A web application experiences memory pressure during peak times. The solutions a
 **C.** Use step scaling with CPU utilization as a proxy for memory usage  
 **D.** Enable detailed monitoring on EC2 instances to expose memory metrics
 
-<details>
-<summary>📖 Explanation</summary>
-
-**Correct Answer: B**
-
-**Why:**
-- EC2 does not publish memory metrics by default
-- CloudWatch agent must be installed to collect and publish memory metrics
-- Create target tracking policy on the custom metric namespace
-
-**Setup Process:**
-1. Install CloudWatch agent on instances (or AMI)
-2. Configure agent to publish mem_used_percent
-3. Create target tracking policy: Metric = Custom Memory, Target = 75%
-
-**Common Mistakes:**
-- Assuming memory is a predefined metric
-- Using CPU as proxy (different resource constraints)
-- Detailed monitoring only adds more frequent CPU/network metrics
-
-</details>
+> [!success]- 📖 Explanation
+> **Correct Answer: B**
+>
+> **Why:**
+> - EC2 does not publish memory metrics by default
+> - CloudWatch agent must be installed to collect and publish memory metrics
+> - Create target tracking policy on the custom metric namespace
+>
+> **Setup Process:**
+> 1. Install CloudWatch agent on instances (or AMI)
+> 2. Configure agent to publish mem_used_percent
+> 3. Create target tracking policy: Metric = Custom Memory, Target = 75%
+>
+> **Common Mistakes:**
+> - Assuming memory is a predefined metric
+> - Using CPU as proxy (different resource constraints)
+> - Detailed monitoring only adds more frequent CPU/network metrics
+>
 
 ---
 
@@ -540,35 +537,32 @@ A company's Redshift cluster has automated snapshots with 7-day retention and se
 **C.** Enable snapshot compression  
 **D.** Move snapshots to S3 Glacier
 
-<details>
-<summary>📖 Explanation</summary>
-
-**Correct Answer: B**
-
-**Why:**
-- Manual snapshots persist indefinitely (ongoing cost)
-- Automated snapshots already expire per retention
-- First action: Audit and delete old manual snapshots
-
-**Cost Analysis:**
-```
-Automated snapshots (7 days): $X/day × 7 = $7X
-Manual snapshots (50 old): $X/snapshot × 50 = $50X
-```
-
-**Action Plan:**
-1. List all manual snapshots
-2. Identify snapshots > 90 days old (or per policy)
-3. Verify no longer needed (check with stakeholders)
-4. Delete in batches
-5. Set up lifecycle automation
-
-**Why Not Others:**
-- A: Reduces backup window (availability risk)
-- C: No such feature (snapshots are already compressed)
-- D: Snapshots already in S3 (no Glacier option)
-
-</details>
+> [!success]- 📖 Explanation
+> **Correct Answer: B**
+>
+> **Why:**
+> - Manual snapshots persist indefinitely (ongoing cost)
+> - Automated snapshots already expire per retention
+> - First action: Audit and delete old manual snapshots
+>
+> **Cost Analysis:**
+> ```
+> Automated snapshots (7 days): $X/day × 7 = $7X
+> Manual snapshots (50 old): $X/snapshot × 50 = $50X
+> ```
+>
+> **Action Plan:**
+> 1. List all manual snapshots
+> 2. Identify snapshots > 90 days old (or per policy)
+> 3. Verify no longer needed (check with stakeholders)
+> 4. Delete in batches
+> 5. Set up lifecycle automation
+>
+> **Why Not Others:**
+> - A: Reduces backup window (availability risk)
+> - C: No such feature (snapshots are already compressed)
+> - D: Snapshots already in S3 (no Glacier option)
+>
 
 ---
 
@@ -581,37 +575,34 @@ An application archives logs to S3 Glacier Flexible Retrieval. For compliance, l
 **C.** Keep Expedited but reduce request frequency  
 **D.** Move to S3 Glacier Instant Retrieval
 
-<details>
-<summary>📖 Explanation</summary>
-
-**Correct Answer: A**
-
-**Retrieval Tier Comparison:**
-
-| Tier | Time | Cost | Use Case |
-|------|------|------|----------|
-| Expedited | 1-5 min | $$$ | Urgent (< 1 hr) |
-| Standard | 3-5 hrs | $$ | Planned (3-5 hrs) |
-| Bulk | 5-12 hrs | $ | Flexible (12+ hrs) |
-
-**Why Standard Fits:**
-- Requirement: 4 hours → Standard delivers in 3-5 hours
-- Expedited is 5-10x more expensive
-- Still meets compliance requirement
-
-**Cost Savings:**
-```
-Expedited: $0.03/GB + $0.01/1000 requests
-Standard: $0.01/GB + $0.05/1000 requests
-Savings: ~66% on retrieval costs
-```
-
-**Why Not Others:**
-- B: Bulk may exceed 4-hour window
-- C: Reduces frequency, doesn't solve overpriced tier
-- D: Instant Retrieval for millisecond access (overkill)
-
-</details>
+> [!success]- 📖 Explanation
+> **Correct Answer: A**
+>
+> **Retrieval Tier Comparison:**
+>
+> | Tier | Time | Cost | Use Case |
+> |------|------|------|----------|
+> | Expedited | 1-5 min | $$$ | Urgent (< 1 hr) |
+> | Standard | 3-5 hrs | $$ | Planned (3-5 hrs) |
+> | Bulk | 5-12 hrs | $ | Flexible (12+ hrs) |
+>
+> **Why Standard Fits:**
+> - Requirement: 4 hours → Standard delivers in 3-5 hours
+> - Expedited is 5-10x more expensive
+> - Still meets compliance requirement
+>
+> **Cost Savings:**
+> ```
+> Expedited: $0.03/GB + $0.01/1000 requests
+> Standard: $0.01/GB + $0.05/1000 requests
+> Savings: ~66% on retrieval costs
+> ```
+>
+> **Why Not Others:**
+> - B: Bulk may exceed 4-hour window
+> - C: Reduces frequency, doesn't solve overpriced tier
+> - D: Instant Retrieval for millisecond access (overkill)
+>
 
 ---
 
@@ -624,34 +615,31 @@ A three-tier application has web servers in public subnets and app servers in pr
 **C.** Use Network ACLs to restrict port 8080 access  
 **D.** Assign Elastic IPs to web servers and whitelist them
 
-<details>
-<summary>📖 Explanation</summary>
-
-**Correct Answer: B**
-
-**Security Group Rule:**
-```
-App Server Security Group (sg-app):
-Inbound Rule:
-- Type: Custom TCP
-- Port: 8080
-- Source: sg-web (Web Server SG ID)
-```
-
-**Why SG-to-SG References:**
-- ✅ Automatically adjusts as instances scale
-- ✅ Works regardless of IP addresses
-- ✅ No need to update rules when instances change
-- ✅ Tightly couples access to SG membership
-
-**Why Not Others:**
-- **A:** Allows ANY instance in public subnet (not just web servers)
-- **C:** NACLs are subnet-level (not instance-level), stateless (complex rules)
-- **D:** Elastic IPs don't scale with Auto Scaling, manual maintenance
-
-**Key Concept:** SG references create dynamic, auto-scaling access control
-
-</details>
+> [!success]- 📖 Explanation
+> **Correct Answer: B**
+>
+> **Security Group Rule:**
+> ```
+> App Server Security Group (sg-app):
+> Inbound Rule:
+> - Type: Custom TCP
+> - Port: 8080
+> - Source: sg-web (Web Server SG ID)
+> ```
+>
+> **Why SG-to-SG References:**
+> - ✅ Automatically adjusts as instances scale
+> - ✅ Works regardless of IP addresses
+> - ✅ No need to update rules when instances change
+> - ✅ Tightly couples access to SG membership
+>
+> **Why Not Others:**
+> - **A:** Allows ANY instance in public subnet (not just web servers)
+> - **C:** NACLs are subnet-level (not instance-level), stateless (complex rules)
+> - **D:** Elastic IPs don't scale with Auto Scaling, manual maintenance
+>
+> **Key Concept:** SG references create dynamic, auto-scaling access control
+>
 
 ---
 
@@ -669,46 +657,43 @@ What is the MOST cost-effective commitment strategy?
 **C.** Compute SP (web) + EC2 Instance SP (app) + RDS RI (DB) ✅  
 **D.** EC2 Instance SP (all EC2) + Compute SP (RDS)
 
-<details>
-<summary>📖 Explanation</summary>
-
-**Correct Answer: C**
-
-**Savings Strategy Matrix:**
-
-| Workload | Characteristics | Best Option | Discount |
-|----------|----------------|-------------|----------|
-| Web tier | Diverse families/regions | Compute SP | 66% |
-| App tier | Stable c5 family | EC2 Instance SP | 72% |
-| RDS Database | Managed service | RDS Reserved Instance | 69% |
-
-**Why This Mix:**
-
-**Compute Savings Plans (Web):**
-- Flexible across instance families (t3, m5, c5)
-- Portable across regions
-- Good for dynamic/evolving workloads
-
-**EC2 Instance Savings Plans (App):**
-- Highest discount (72%)
-- Locked to c5 family (acceptable for stable tier)
-- Regional commitment
-
-**RDS Reserved Instances (DB):**
-- Separate from EC2 plans
-- Database-specific pricing model
-- Required for managed service discounts
-
-**Critical Mistake:** RDS is NOT covered by EC2/Compute Savings Plans
-
-**Cost Example:**
-```
-On-Demand Total: $10,000/month
-With Mixed Strategy: $3,800/month (62% savings)
-With Wrong Strategy: $5,200/month (48% savings)
-```
-
-</details>
+> [!success]- 📖 Explanation
+> **Correct Answer: C**
+>
+> **Savings Strategy Matrix:**
+>
+> | Workload | Characteristics | Best Option | Discount |
+> |----------|----------------|-------------|----------|
+> | Web tier | Diverse families/regions | Compute SP | 66% |
+> | App tier | Stable c5 family | EC2 Instance SP | 72% |
+> | RDS Database | Managed service | RDS Reserved Instance | 69% |
+>
+> **Why This Mix:**
+>
+> **Compute Savings Plans (Web):**
+> - Flexible across instance families (t3, m5, c5)
+> - Portable across regions
+> - Good for dynamic/evolving workloads
+>
+> **EC2 Instance Savings Plans (App):**
+> - Highest discount (72%)
+> - Locked to c5 family (acceptable for stable tier)
+> - Regional commitment
+>
+> **RDS Reserved Instances (DB):**
+> - Separate from EC2 plans
+> - Database-specific pricing model
+> - Required for managed service discounts
+>
+> **Critical Mistake:** RDS is NOT covered by EC2/Compute Savings Plans
+>
+> **Cost Example:**
+> ```
+> On-Demand Total: $10,000/month
+> With Mixed Strategy: $3,800/month (62% savings)
+> With Wrong Strategy: $5,200/month (48% savings)
+> ```
+>
 
 ---
 
@@ -721,48 +706,45 @@ An e-commerce application uses Auto Scaling (min=2, max=15). The architect wants
 **C.** On-Demand base=2, above that 80% Spot / 20% On-Demand ✅  
 **D.** On-Demand base=0, 50% Spot / 50% On-Demand
 
-<details>
-<summary>📖 Explanation</summary>
-
-**Correct Answer: C**
-
-**Mixed Instance Strategy:**
-```
-Capacity Plan:
-- Base (2): On-Demand (always available)
-- Scale 3-15: 80% Spot (cost savings) + 20% On-Demand (reliability buffer)
-
-Example at 10 instances:
-- 2 On-Demand (base)
-- 6 Spot (80% of 8)
-- 2 On-Demand (20% of 8)
-Total: 4 OD + 6 Spot
-```
-
-**Cost Analysis:**
-```
-All On-Demand (10): $1000/month
-All Spot (10): $300/month (but risky)
-Mixed (4 OD + 6 Spot): $400 OD + $180 Spot = $580 (42% savings)
-```
-
-**Why This Works:**
-- ✅ Guarantees 2 instances always available (On-Demand base)
-- ✅ Achieves significant cost savings with Spot
-- ✅ Maintains reliability buffer with 20% On-Demand in burst
-- ✅ Can handle Spot interruptions gracefully
-
-**Why Not Others:**
-- **A:** Spot interruptions can affect entire fleet (no baseline protection)
-- **B:** No cost optimization (pays full price)
-- **D:** No guaranteed baseline (base=0 means all Spot initially)
-
-**Interruption Handling:**
-- Spot interrupts instance → Auto Scaling launches replacement
-- Always maintains desired capacity
-- On-Demand instances absorb load during Spot interruption
-
-</details>
+> [!success]- 📖 Explanation
+> **Correct Answer: C**
+>
+> **Mixed Instance Strategy:**
+> ```
+> Capacity Plan:
+> - Base (2): On-Demand (always available)
+> - Scale 3-15: 80% Spot (cost savings) + 20% On-Demand (reliability buffer)
+>
+> Example at 10 instances:
+> - 2 On-Demand (base)
+> - 6 Spot (80% of 8)
+> - 2 On-Demand (20% of 8)
+> Total: 4 OD + 6 Spot
+> ```
+>
+> **Cost Analysis:**
+> ```
+> All On-Demand (10): $1000/month
+> All Spot (10): $300/month (but risky)
+> Mixed (4 OD + 6 Spot): $400 OD + $180 Spot = $580 (42% savings)
+> ```
+>
+> **Why This Works:**
+> - ✅ Guarantees 2 instances always available (On-Demand base)
+> - ✅ Achieves significant cost savings with Spot
+> - ✅ Maintains reliability buffer with 20% On-Demand in burst
+> - ✅ Can handle Spot interruptions gracefully
+>
+> **Why Not Others:**
+> - **A:** Spot interruptions can affect entire fleet (no baseline protection)
+> - **B:** No cost optimization (pays full price)
+> - **D:** No guaranteed baseline (base=0 means all Spot initially)
+>
+> **Interruption Handling:**
+> - Spot interrupts instance → Auto Scaling launches replacement
+> - Always maintains desired capacity
+> - On-Demand instances absorb load during Spot interruption
+>
 
 ---
 

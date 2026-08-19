@@ -402,13 +402,10 @@ B) S3 Glacier Flexible Retrieval
 C) S3 Glacier Deep Archive  
 D) EBS Cold HDD
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-S3 Glacier Deep Archive is the lowest cost storage class, perfect for data accessed rarely (once or twice per year). Retrieval time is 12-48 hours, which is acceptable for the use case.
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> S3 Glacier Deep Archive is the lowest cost storage class, perfect for data accessed rarely (once or twice per year). Retrieval time is 12-48 hours, which is acceptable for the use case.
 
 ### Question 2
 **An application requires a shared file system that can be accessed by multiple Linux EC2 instances across different Availability Zones. Which service should be used?**
@@ -418,13 +415,10 @@ B) Amazon EBS
 C) Amazon EFS  
 D) Instance Store
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-Amazon EFS provides a shared NFS file system that can be mounted by multiple EC2 instances across different AZs. EBS is AZ-specific and typically attaches to a single instance.
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> Amazon EFS provides a shared NFS file system that can be mounted by multiple EC2 instances across different AZs. EBS is AZ-specific and typically attaches to a single instance.
 
 ### Question 3
 **A company needs to transfer 50 TB of data from their on-premises data center to AWS. They have limited bandwidth (10 Mbps). What is the most appropriate solution?**
@@ -434,13 +428,10 @@ B) Upload via S3 Transfer Acceleration
 C) Use AWS Snowball Edge  
 D) Use AWS DataSync
 
-<details>
-<summary>Show Answer</summary>
-
-**Answer: C**
-
-At 10 Mbps, transferring 50 TB would take approximately 46 days. AWS Snowball Edge is designed for this scenario - physical device shipped to customer, data loaded locally, then shipped to AWS.
-</details>
+> [!success]- Show Answer
+> **Answer: C**
+>
+> At 10 Mbps, transferring 50 TB would take approximately 46 days. AWS Snowball Edge is designed for this scenario - physical device shipped to customer, data loaded locally, then shipped to AWS.
 
 ---
 
