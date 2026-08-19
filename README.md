@@ -1,5 +1,7 @@
 # AWS Certified Solutions Architect Associate — Complete Study Guide
 
+> **📌 Attribution:** This repository is based on the original [AWS-Certified-Solutions-Architect-Associate-SAA-C03](https://github.com/ChathurangaVKD/AWS-Certified-Solutions-Architect-Associate-SAA-C03) study guide created by [ChathurangaVKD](https://github.com/ChathurangaVKD), licensed under MIT. This fork has been extended and reorganized by [Karthikeya Kamath](https://github.com/karthikeya7) with personal notes and formatting changes.
+
 <div align="center">
 
 ![AWS](https://img.shields.io/badge/AWS-Solutions_Architect-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)
