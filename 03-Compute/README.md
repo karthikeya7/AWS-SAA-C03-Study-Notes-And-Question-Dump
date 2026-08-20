@@ -242,10 +242,14 @@ Run your code without managing any server. Upload a function, AWS runs it only w
 
 ### Concurrency: Reserved vs Provisioned
 
-| Type | What it does | Cost | Use case |
-|------|----------------|------|----------|
-| **Reserved Concurrency** | Caps/guarantees a slice of your account's 1,000-execution limit for one function — protects it from being starved by other functions, but also can't exceed that cap | Free | Prevent one noisy function from hogging all concurrency |
-| **Provisioned Concurrency** | Pre-warms a set number of execution environments so there's no cold start | Costs extra (you pay for the pre-warmed capacity even when idle) | Latency-sensitive apps (e.g. user-facing APIs) that can't tolerate cold-start delay |
+**The shared problem both solve:** all Lambda functions in an account share ONE pool of 1,000 concurrent executions by default. If Function A gets a traffic spike and eats all 1,000, Function B gets throttled too — even with completely normal traffic of its own. "Noisy neighbor" problem.
+
+| Type | Problem it solves (plain English) | What it does | Cost | When to use |
+|------|--------------------------------------|-----------------|------|----------------|
+| **Reserved Concurrency** | Stops one noisy function from starving others — carves out a guaranteed, capped slice just for one function | Guarantees AND caps a fixed number of the 1,000 slots for one function — others can never steal them, but this function can never exceed them either | Free — just an allocation from the existing pool | Critical functions that must never be starved (e.g. payment processing). Or the reverse: cap a function so it can't overwhelm something downstream (e.g. limit DB connections) |
+| **Provisioned Concurrency** | Eliminates cold starts — the delay when Lambda has to build a fresh execution environment from scratch | Pre-warms and keeps N execution environments running and ready in advance, so requests hit an already-initialized environment instantly | Costs extra continuously — you pay for the warm capacity even when idle | Latency-sensitive, user-facing workloads (e.g. an API behind a mobile app) that can't tolerate cold-start delay, especially before a known traffic spike |
+
+**Analogies:** Reserved Concurrency = reserving 100 VIP parking spots in a shared lot — always available for the VIP, but the VIP also can never use more than 100. Provisioned Concurrency = a valet who already has your car running and pulled up before you arrive, instead of only starting the search for your keys once you show up (cold start).
 
 ### Dead Letter Queues (DLQ) & Destinations
 
