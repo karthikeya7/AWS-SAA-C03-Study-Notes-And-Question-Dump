@@ -52,9 +52,16 @@ AWS compute services for SAA-C03 exam: EC2, Lambda, containers, Auto Scaling, an
 > Mnemonic: "**S**cared **R**enters **S**ave, **O**thers **D**on't." (Spot → Reserved → Savings → On-Demand/Dedicated)
 
 ### Placement Groups
-- **Cluster**: Low latency, same AZ
-- **Spread**: Max 7/AZ, critical apps
-- **Partition**: Distributed apps (Hadoop, Kafka)
+
+Controls the physical arrangement of EC2 instances relative to each other — for either **speed** or **safety**.
+
+| Type | What it does | Tradeoff | Use when | Analogy |
+|------|--------------|----------|----------|---------|
+| **Cluster** | Packs instances physically close together (same rack, same AZ) → near-zero latency | If that rack/location fails, you could lose them all together | Tightly-coupled HPC, big data, high-performance computing | Seating your whole team at one table — fast to talk, but if the table collapses, everyone falls |
+| **Spread** | Spreads instances across different hardware (different racks; max 7/AZ) | Slightly higher latency since they're not physically close | Small number of critical instances where you want to minimize shared-hardware failure risk | Seating key leads at 7 different tables in different rooms |
+| **Partition** | Divides instances into isolated partitions (max 7/AZ); instances *within* a partition can be close | None significant — designed for distributed systems | Large distributed apps that understand partitions/racks (Hadoop, Kafka, Cassandra, HDFS) | Splitting your team into separate rooms — close together within a room, isolated between rooms |
+
+**One-line summary:** Cluster = fast but risky (all eggs, one basket). Spread = safe but limited (max 7, one egg per basket). Partition = safe *and* scalable (many baskets, several eggs per basket).
 
 ---
 
