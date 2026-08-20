@@ -172,6 +172,8 @@ Cooldown = a blunt global pause (freezes *all* scaling activity for the duration
 
 ## 3. Elastic Load Balancing
 
+The traffic cop that sits in front of your instances/containers and spreads incoming requests across them, so no single server gets overwhelmed. "Layer" = how deep it looks into your traffic (OSI model).
+
 | Type | Layer          | Use Case                  | Features                          |
 | ---- | -------------- | ------------------------- | --------------------------------- |
 | ALB  | 7 (HTTP/HTTPS) | Microservices, containers | Path/host routing, Lambda targets |
@@ -179,11 +181,13 @@ Cooldown = a blunt global pause (freezes *all* scaling activity for the duration
 | GWLB | 3 (Network)    | Virtual appliances        | Firewalls, IDS                    |
 | CLB  | 4 & 7          | Legacy                    | Not recommended                   |
 
+**Quick pick:** ALB = smart routing by URL/content. NLB = raw speed, no content inspection. GWLB = routes through security appliances first. CLB = old, avoid for new builds.
+
 ### Features
-- Health checks
-- Sticky sessions
-- Cross-zone load balancing
-- SSL/TLS termination
+- **Health checks** — pings each target; unhealthy ones stop receiving traffic
+- **Sticky sessions** — same user always routed to the same backend instance
+- **Cross-zone load balancing** — spreads traffic evenly across all AZs, not just one
+- **SSL/TLS termination** — LB handles HTTPS decryption, backend only deals with plain HTTP
 
 ---
 
