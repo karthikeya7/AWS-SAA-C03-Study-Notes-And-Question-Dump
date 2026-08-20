@@ -21,12 +21,18 @@ AWS compute services for SAA-C03 exam: EC2, Lambda, containers, Auto Scaling, an
 
 ## 1. Amazon EC2
 
-### Instance Types (CRAM FACTS)
-- **C** - Compute Optimized
-- **R** - Memory Optimized (RAM)
-- **M** - General Purpose (Medium)
-- **T** - Burstable Performance
-- **I/D/H** - Storage Optimized
+### Instance Types (Memorize)
+
+| Letter | Stands for | Optimized for |
+|--------|-----------|---------------|
+| **C** | Compute | High CPU — video encoding, batch processing, gaming servers |
+| **R** | RAM (memory) | High RAM — in-memory databases, caching (Redis), big data |
+| **M** | Medium/general | Balanced CPU+RAM — most everyday apps, web servers |
+| **T** | Burstable ("burs**T**") | Cheap, low baseline CPU that can burst — small websites, dev/test |
+| **I / D / H** | I/O, Density, Hard-disk (storage) | High disk throughput — databases needing fast local storage, data warehousing |
+
+**Mnemonic (letters in order C-R-M-T-I-D-H):**
+> "Crazy Rabbits Munch Tiny Insects During Hunts"
 
 ### Pricing Models
 | Model | Discount | Use Case |
@@ -62,12 +68,12 @@ AWS compute services for SAA-C03 exam: EC2, Lambda, containers, Auto Scaling, an
 
 ## 3. Elastic Load Balancing
 
-| Type | Layer | Use Case | Features |
-|------|-------|----------|----------|
-| ALB | 7 (HTTP/HTTPS) | Microservices, containers | Path/host routing, Lambda targets |
-| NLB | 4 (TCP/UDP) | Extreme performance | Static IP, millions req/sec |
-| GWLB | 3 (Network) | Virtual appliances | Firewalls, IDS |
-| CLB | 4 & 7 | Legacy | Not recommended |
+| Type | Layer          | Use Case                  | Features                          |
+| ---- | -------------- | ------------------------- | --------------------------------- |
+| ALB  | 7 (HTTP/HTTPS) | Microservices, containers | Path/host routing, Lambda targets |
+| NLB  | 4 (TCP/UDP)    | Extreme performance       | Static IP, millions req/sec       |
+| GWLB | 3 (Network)    | Virtual appliances        | Firewalls, IDS                    |
+| CLB  | 4 & 7          | Legacy                    | Not recommended                   |
 
 ### Features
 - Health checks
@@ -134,9 +140,23 @@ AWS compute services for SAA-C03 exam: EC2, Lambda, containers, Auto Scaling, an
 - Uses Spot instances for cost savings
 
 ### Lightsail
-- Simple VPS
-- Fixed monthly pricing
-- Pre-configured templates
+- AWS's own VPS-style product — simple virtual server with fixed monthly pricing
+- Pre-configured templates (WordPress, LAMP, Node.js, etc.)
+- Built on EC2 under the hood, but hides the complexity (no VPC/IAM/Auto Scaling config needed)
+- Closest AWS equivalent to a cheap third-party VPS (Hostinger, DigitalOcean)
+
+### VPS vs EC2 vs Lightsail
+
+| | VPS (Hostinger, DigitalOcean) | Lightsail | EC2 |
+|---|---|---|---|
+| **What it is** | Fixed-size virtual server, flat price | AWS's simplified fixed-price VM | Virtual server + full AWS ecosystem |
+| **Scaling** | Manual resize | Manual resize (limited) | Auto Scaling — automatic |
+| **Pricing** | Flat monthly | Flat monthly (simple tiers) | Pay-per-second; On-Demand/Reserved/Spot |
+| **Networking** | Basic | Simplified VPC | Full VPC — subnets, SGs, NACLs, ALB/NLB |
+| **High availability** | Single server | Limited | Multi-AZ / multi-region |
+| **Best for** | Small sites, side projects | Simple apps wanting AWS without complexity | Production workloads needing scale, HA, integration |
+
+**Memory trick:** VPS = one fixed box, DIY. Lightsail = AWS's "easy mode" VPS. EC2 = a box plugged into the entire AWS platform.
 
 ---
 
