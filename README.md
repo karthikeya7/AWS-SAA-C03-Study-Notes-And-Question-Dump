@@ -183,6 +183,7 @@ A curated set of resources to support every stage of your preparation:
 | [📇 Flashcards](docs/study-guides/FLASHCARDS.md) | 30–60 min | Quick review cards | Final review |
 | [🔍 Quick Reference](docs/reference/QUICK-REFERENCE.md) | 15 min | Service lookup table | Quick facts |
 | [📅 Study Roadmap](docs/study-guides/STUDY-ROADMAP.md) | — | Structured 8-week study plan | Long-term planning |
+| [🔁 Spaced Repetition Tracker](docs/study-guides/SPACED-REPETITION-TRACKER.md) | Ongoing | Review schedule for confusing concepts | Retention before exam day |
 
 ---
 
