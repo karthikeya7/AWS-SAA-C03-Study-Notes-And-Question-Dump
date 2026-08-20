@@ -63,6 +63,33 @@ Controls the physical arrangement of EC2 instances relative to each other — fo
 
 **One-line summary:** Cluster = fast but risky (all eggs, one basket). Spread = safe but limited (max 7, one egg per basket). Partition = safe *and* scalable (many baskets, several eggs per basket).
 
+### AMI (Amazon Machine Image)
+
+The "golden image" template used to launch an EC2 instance — includes the OS, installed software, and configuration. Every instance you launch is a clone of an AMI.
+
+- **Exam trap:** AMIs are **region-specific**. If you need to launch the same instance setup in another region, you must explicitly **copy the AMI** to that region first — it doesn't exist there automatically.
+- Common use: build a "golden image" once (OS + your app + patches), then launch/scale identical instances from it — faster and more consistent than configuring each instance by hand.
+
+### Instance Metadata Service (IMDSv2) — high-yield security topic
+
+Every EC2 instance can query `http://169.254.169.254/latest/meta-data/` from *inside* the instance to get info about itself (instance ID, IP, security groups, and — critically — **temporary IAM role credentials**).
+
+**The security problem (IMDSv1):** if your app has a vulnerability (e.g. SSRF — Server-Side Request Forgery), an attacker could trick your app into making a request to that metadata URL and steal the instance's IAM credentials, without ever needing direct server access.
+
+**The fix (IMDSv2):** requires a session token (via a `PUT` request) before you can query metadata — a simple GET request (what SSRF attacks typically use) no longer works alone. AWS now recommends and increasingly defaults to **IMDSv2** for this reason.
+
+**Exam tip:** if a question mentions SSRF risk or credential theft via metadata, the answer is almost always "enforce IMDSv2."
+
+### Stop vs Terminate vs Hibernate
+
+| Action | What happens to the root EBS volume | What happens to RAM | Billing while stopped | Use case |
+|--------|----------------------------------------|-------------------------|---------------------------|----------|
+| **Stop** | Preserved (data intact) | Lost | Billed for EBS storage only, not compute | Pause an instance temporarily, resume later |
+| **Terminate** | Deleted by default (unless "Delete on Termination" is unchecked) | Lost | No billing after termination | Permanently done with the instance |
+| **Hibernate** | Preserved | **Saved to the root EBS volume** (like a laptop hibernating) | Billed for EBS storage only | Resume instantly with RAM state intact — no need to reboot the OS or reload applications |
+
+**Memory hook:** Stop = pause (keep disk, lose RAM). Terminate = delete (lose everything, unless protected). Hibernate = suspend-to-disk (keep disk AND RAM state) — like closing a laptop lid vs. shutting it down vs. wiping it.
+
 ---
 
 ## 2. Auto Scaling
@@ -154,6 +181,45 @@ Once configured: instance fails check → marked Unhealthy → ASG automatically
 
 Cooldown = a blunt global pause (freezes *all* scaling activity for the duration). Instance Warmup = a smarter alternative that just excludes newly-launched instances from metric calculations until they're contributing real load data, instead of freezing everything. Both have automatic defaults — no manual setup required to get reasonable behavior, though both can be tuned.
 
+### Termination Policy — which instance gets removed when scaling IN?
+
+When the ASG needs to remove an instance, the **default termination policy** decides which one, in this order:
+1. Instance in the AZ with the **most** instances (keeps AZs balanced)
+2. Within that AZ, the instance using the **oldest launch template/configuration** (removes outdated instances first)
+3. If still tied, the instance **closest to its next billing hour** (minimizes wasted partial-hour cost)
+
+You can customize this (e.g. `OldestInstance`, `NewestInstance`, `ClosestToNextInstanceHour`) if the default doesn't fit your use case.
+
+### Instance Refresh
+
+**The problem:** you update your Launch Template (e.g. new AMI with security patches) — but existing running instances **don't automatically get the update**. They keep running on the old template until they happen to be replaced.
+
+**The fix:** Instance Refresh triggers a **rolling replacement** of all instances in the ASG with new ones based on the updated template — gradually, respecting a minimum healthy percentage so you don't cause an outage.
+
+**Exam trigger phrase:** "roll out a new AMI/patch to all instances in an ASG" → Instance Refresh.
+
+### Warm Pools
+
+**The problem:** some applications take a long time to boot (heavy initialization, large software installs) — so when Auto Scaling needs to scale out fast, new instances aren't ready in time to handle the traffic spike.
+
+**The fix:** Warm Pools keep a pool of **pre-initialized instances** in a stopped (or running) state, ready to be put into service almost instantly when scaling out — instead of booting from scratch each time.
+
+### Mixed Instances Policy
+
+Lets ONE Auto Scaling Group launch a **combination** of instance types and purchase options — e.g. a base of On-Demand instances for guaranteed capacity, plus Spot instances layered on top for cheap extra capacity, potentially across several different instance types for better Spot availability.
+
+**Exam trigger phrase:** "cost-optimize an ASG while maintaining some guaranteed baseline capacity" → Mixed Instances Policy (On-Demand base + Spot for the rest).
+
+### Scaling on Custom Metrics (e.g. SQS Queue Depth)
+
+Target Tracking and Step Scaling aren't limited to CPU — they can scale off **any CloudWatch metric**, including custom ones you publish yourself.
+
+**Classic exam scenario:** "Worker instances process jobs from an SQS queue — scale based on how backed up the queue is, not CPU." → Create a custom CloudWatch metric for queue depth (e.g. `ApproximateNumberOfMessagesVisible` divided by number of instances) and use it as the Target Tracking metric.
+
+### Suspending Processes
+
+You can temporarily **pause specific ASG processes** (e.g. `Launch`, `Terminate`, `HealthCheck`, `AlarmNotification`) without deleting the whole ASG — useful during maintenance windows or troubleshooting, so the ASG doesn't fight you by launching/terminating instances while you're working on them.
+
 ### Does Auto Scaling Apply to ECS, EKS, Lambda Too?
 
 **Short answer: EC2 Auto Scaling Groups (above) are only for EC2.** Other services scale differently:
@@ -188,6 +254,49 @@ The traffic cop that sits in front of your instances/containers and spreads inco
 - **Sticky sessions** — same user always routed to the same backend instance
 - **Cross-zone load balancing** — spreads traffic evenly across all AZs, not just one
 - **SSL/TLS termination** — LB handles HTTPS decryption, backend only deals with plain HTTP
+
+### Deregistration Delay (Connection Draining) — default 300s
+
+**The problem:** you're removing an instance from the load balancer (scaling in, or deploying a new version) — but that instance might have requests **in-flight right now**. Yanking it out immediately would cut those requests off mid-response.
+
+**The fix:** the LB stops sending *new* requests to that instance immediately, but waits up to the deregistration delay (default 300s, configurable) for **existing** in-flight requests to finish before fully removing it.
+
+**Exam trigger phrase:** "zero-downtime deployment" or "don't drop in-flight requests during scale-in" → Deregistration delay / connection draining.
+
+### Idle Timeout — default 60s
+
+If a connection between client and LB sits idle (no data sent) longer than this, the LB closes it. Relevant for long-polling or WebSocket connections — you may need to increase this default if your app holds connections open intentionally.
+
+### ALB Target Types
+
+ALB can route traffic to three different kinds of targets:
+
+| Target type | What it points to |
+|-------------|------------------------|
+| **Instance** | EC2 instances (by instance ID) |
+| **IP** | Any IP address — including on-premises servers reachable via VPN/Direct Connect |
+| **Lambda** | A Lambda function directly — lets you put a Lambda function behind a standard ALB |
+
+### X-Forwarded-For Header
+
+**The problem:** since the load balancer sits between the client and your app, your app sees every request as coming from the *load balancer's* IP, not the real client's IP.
+
+**The fix (ALB only):** ALB adds an `X-Forwarded-For` header containing the original client IP — your app must read this header if it needs to know the real client IP (e.g. for logging, geo-blocking, rate limiting).
+
+**Note:** NLB doesn't have this problem — it operates at Layer 4 and **preserves the original source IP natively**, so no header trick is needed there.
+
+### SNI Support (ALB)
+
+Lets ALB serve **multiple SSL/TLS certificates on the same HTTPS listener** — so one ALB can host multiple domains (each with its own certificate) without needing a separate load balancer per domain.
+
+### Cross-Zone Load Balancing Defaults Differ by Type
+
+| Type | Default | Cost when enabled |
+|------|---------|------------------------|
+| **ALB** | Always on, cannot be disabled | Free |
+| **NLB** | **Off** by default | Enabling it can incur cross-AZ data transfer charges |
+
+**Exam trap:** don't assume cross-zone load balancing is free/on for NLB just because it is for ALB — it's the opposite default.
 
 ---
 
