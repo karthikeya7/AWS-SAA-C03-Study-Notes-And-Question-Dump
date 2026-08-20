@@ -121,6 +121,20 @@ Once configured: instance fails check → marked Unhealthy → ASG automatically
 
 **Cooldown periods (default 300s)** — after a scaling activity, further scaling triggers are ignored for this duration, to prevent "flapping" (scale-out drops CPU → immediate scale-in → CPU rises again → loop). On by default; mainly applies to Step/Simple Scaling. Target Tracking uses its own smarter built-in logic, so manual tuning is rarely needed there.
 
+### Does Auto Scaling Apply to ECS, EKS, Lambda Too?
+
+**Short answer: EC2 Auto Scaling Groups (above) are only for EC2.** Other services scale differently:
+
+| Service | How it scales |
+|---------|----------------|
+| **EC2** | Auto Scaling Group (ASG) — what's covered above |
+| **ECS** | Scales *task count* (Service Auto Scaling). If using EC2 (not Fargate), the underlying EC2 nodes also scale via a normal ASG |
+| **ECS + Fargate** | Only scales task count — no servers to manage at all |
+| **EKS** | Scales *pods* (Horizontal Pod Autoscaler) and *worker nodes* (Cluster Autoscaler/Karpenter) separately |
+| **Lambda** | Fully automatic, no configuration — scales per request instantly, no Min/Max/ASG concept at all |
+
+**One-line memory hook:** EC2 = you manage the ASG. ECS/EKS = scaling happens at two levels (app + servers). Lambda = no servers, so nothing to scale manually — it just happens.
+
 ---
 
 ## 3. Elastic Load Balancing
