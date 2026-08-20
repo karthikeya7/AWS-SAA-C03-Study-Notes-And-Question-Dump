@@ -99,6 +99,27 @@ The container/manager that ties everything together — you don't scale individu
 3. **Scheduled**: Time-based scaling — e.g. add capacity every weekday 9am, remove at 6pm
 4. **Predictive**: ML-based forecasting — scales *ahead* of demand instead of reacting to it
 
+#### Target Tracking vs Step Scaling (the confusing pair)
+
+**Both use CloudWatch alarms under the hood — the real difference is who sets up the alarm and who decides how much to scale by.**
+
+| | Target Tracking | Step Scaling |
+|---|---|---|
+| You configure | One target value (e.g. "CPU = 50%") | Alarm thresholds + exact scale amount per threshold |
+| Creates the CloudWatch alarm | AWS does it automatically | You create it manually |
+| Decides how many instances to add | AWS's algorithm calculates it | You decide, in steps |
+| Control | Low — simple, hands-off | High — custom, graduated response |
+
+**Example — Step Scaling manually defined:**
+```
+Alarm: CPU > 60% for 5 min → trigger
+60-70% → add 1 instance
+70-80% → add 2 instances
+> 80%  → add 4 instances
+```
+
+**Rule of thumb:** Target Tracking = "set it and forget it" (use this by default). Step Scaling = only when you need different-sized reactions for different severity levels.
+
 ### Key Concepts
 
 **Min/Desired/Max capacity** — the boundaries: never fewer than Min, never more than Max, tries to stay at Desired.
