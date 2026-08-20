@@ -174,12 +174,12 @@ Cooldown = a blunt global pause (freezes *all* scaling activity for the duration
 
 The traffic cop that sits in front of your instances/containers and spreads incoming requests across them, so no single server gets overwhelmed. "Layer" = how deep it looks into your traffic (OSI model).
 
-| Type | Layer          | Use Case                  | Features                          |
-| ---- | -------------- | ------------------------- | --------------------------------- |
-| ALB  | 7 (HTTP/HTTPS) | Microservices, containers | Path/host routing, Lambda targets |
-| NLB  | 4 (TCP/UDP)    | Extreme performance       | Static IP, millions req/sec       |
-| GWLB | 3 (Network)    | Virtual appliances        | Firewalls, IDS                    |
-| CLB  | 4 & 7          | Legacy                    | Not recommended                   |
+| Type | Layer | Plain English | Best For | Features |
+|------|-------|----------------|----------|----------|
+| ALB | 7 (HTTP/HTTPS) | Reads the actual request (URL, headers) and routes smartly | Microservices, containers | Path/host routing, Lambda targets |
+| NLB | 4 (TCP/UDP) | Just checks IP+port, doesn't inspect content — very fast | Extreme performance | Static IP, millions req/sec |
+| GWLB | 3 (Network) | Sends traffic through a security appliance first | Virtual appliances | Firewalls, IDS |
+| CLB | 4 & 7 | The old load balancer, does both layers poorly | Legacy — avoid for new work | Not recommended |
 
 **Quick pick:** ALB = smart routing by URL/content. NLB = raw speed, no content inspection. GWLB = routes through security appliances first. CLB = old, avoid for new builds.
 
