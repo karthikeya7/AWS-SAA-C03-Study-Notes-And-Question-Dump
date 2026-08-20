@@ -220,6 +220,58 @@ Run your code without managing any server. Upload a function, AWS runs it only w
 
 **Rule of thumb:** cheapest for short, infrequent, event-driven tasks. Constant or long-running workloads usually become cheaper on EC2/Fargate.
 
+### Lambda + VPC
+
+**The problem:** by default, Lambda runs outside your VPC entirely, in an AWS-managed network. It can reach the public internet and public AWS services fine — but it CANNOT reach resources inside your private VPC (e.g. an RDS database in a private subnet), because it's treated like any other outsider.
+
+**The fix:** attach the Lambda function to your VPC. AWS creates an **ENI** (Elastic Network Interface — a virtual network card) for the function inside subnets you choose, giving it a real private IP inside your VPC. Now it can reach RDS, ElastiCache, internal EC2, etc. following normal VPC rules (security groups, subnets).
+
+**Analogy:** your VPC is an office building with badge access. By default, Lambda is a courier standing outside — can deliver to the public mailbox, can't enter private offices. Attaching it to the VPC is like giving that courier an employee badge to walk the internal hallways.
+
+**The classic exam trap — the tradeoff:** once attached to your VPC, Lambda **loses automatic internet access**. Whether it can still reach the internet depends on subnet setup, exactly like EC2:
+
+| Subnet setup | Can reach VPC resources (e.g. RDS)? | Can reach internet? |
+|--------------|----------------------------------------|------------------------|
+| Not attached to VPC (default) | No | Yes |
+| Private subnet + NAT Gateway | Yes | Yes |
+| Private subnet, no NAT Gateway | Yes | No |
+
+**Exam scenario:** "Lambda needs to query a private RDS database AND call a third-party API." → Attach to VPC (private subnet) **and** ensure that subnet routes through a NAT Gateway.
+
+**Historical note (still shows up in questions):** VPC-attached Lambdas used to have noticeably slower cold starts due to ENI creation time. AWS has since optimized this — but exam questions sometimes still test the older assumption.
+
+### Concurrency: Reserved vs Provisioned
+
+| Type | What it does | Cost | Use case |
+|------|----------------|------|----------|
+| **Reserved Concurrency** | Caps/guarantees a slice of your account's 1,000-execution limit for one function — protects it from being starved by other functions, but also can't exceed that cap | Free | Prevent one noisy function from hogging all concurrency |
+| **Provisioned Concurrency** | Pre-warms a set number of execution environments so there's no cold start | Costs extra (you pay for the pre-warmed capacity even when idle) | Latency-sensitive apps (e.g. user-facing APIs) that can't tolerate cold-start delay |
+
+### Dead Letter Queues (DLQ) & Destinations
+
+Only relevant for **async** invocations (S3, SNS, EventBridge triggers). If the function fails after automatic retries, the failed event needs somewhere to go:
+
+- **DLQ (legacy)** — routes failed events to an SQS queue or SNS topic
+- **Destinations (newer, preferred)** — routes to SQS, SNS, Lambda, or EventBridge, and can also capture *successful* invocations, not just failures — more detail than a DLQ
+
+### Retry Behavior by Invocation Type
+
+| Type | Retry behavior |
+|------|-------------------|
+| Synchronous | No automatic retries — the caller must handle failure itself |
+| Asynchronous | Automatic retries (default 2) with backoff, then routes to DLQ/Destination |
+| Event Source Mapping | Keeps retrying until success or the data expires (e.g. Kinesis/DynamoDB retention window, SQS visibility timeout) |
+
+### Versions & Aliases
+
+- **Version** — an immutable snapshot of your function's code + config at a point in time
+- **Alias** — a named pointer to a version (e.g. `prod` → v3), used for traffic shifting — e.g. send 90% of traffic to v1 and 10% to v2 for canary testing. Common in blue/green deployments, often paired with CodeDeploy.
+
+### Deployment Package Limits
+- **50 MB** zipped (direct console/CLI upload)
+- **250 MB** unzipped
+- **10 GB** via container image (for larger dependencies)
+
 ---
 
 ## 5. Container Services
