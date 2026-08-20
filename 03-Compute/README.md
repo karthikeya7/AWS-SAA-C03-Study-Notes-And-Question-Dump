@@ -35,13 +35,21 @@ AWS compute services for SAA-C03 exam: EC2, Lambda, containers, Auto Scaling, an
 > "Crazy Rabbits Munch Tiny Insects During Hunts"
 
 ### Pricing Models
-| Model | Discount | Use Case |
-|-------|----------|----------|
-| On-Demand | None | Short-term, unpredictable |
-| Reserved (1-3 yr) | Up to 72% | Steady state |
-| Savings Plans | Up to 66% | Flexible commitment |
-| Spot | Up to 90% | Fault-tolerant workloads |
-| Dedicated | None | Compliance, licensing |
+
+**Car rental analogy** — helps explain *why* each one costs what it does, not just the label:
+
+| Model | Car rental analogy | Discount | Use Case |
+|-------|--------------------|----------|----------|
+| On-Demand | Renting by the hour, no booking ahead | None (full price) | Short-term, unpredictable |
+| Reserved (1-3 yr) | Signing a 1-3 year lease — cheaper because you commit | Up to 72% | Steady state |
+| Savings Plans | Flexible subscription — commit to *spend*, not a specific car | Up to 66% | Flexible commitment |
+| Spot | Bidding on a used car at auction — cheap, but owner can reclaim anytime | Up to 90% | Fault-tolerant workloads |
+| Dedicated | Your own private garage — nobody else's car touches your space | None (pay for isolation, not discount) | Compliance, licensing |
+
+**Memory hook:** "The longer you commit, the more you save — except Spot, where you're gambling instead of committing."
+
+**Ranking by discount (cheapest → priciest): Spot (90%) → Reserved (72%) → Savings Plans (66%) → On-Demand/Dedicated (0%)**
+> Mnemonic: "**S**cared **R**enters **S**ave, **O**thers **D**on't." (Spot → Reserved → Savings → On-Demand/Dedicated)
 
 ### Placement Groups
 - **Cluster**: Low latency, same AZ
