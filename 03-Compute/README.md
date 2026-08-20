@@ -94,10 +94,11 @@ The container/manager that ties everything together — you don't scale individu
 **Analogy:** the ASG is a **restaurant manager**, not the wait staff. Launch Template = the training manual every new hire follows identically. Min/Desired/Max = "always have at least 2 staff, ideally 4, never more than 10." Scaling policies = the manager's rule book for calling in more staff. Health checks = the manager noticing someone's sick and calling in a replacement — automatically, without you personally hiring/firing each person.
 
 ### Scaling Policies
-1. **Target Tracking**: Maintain metric (e.g., CPU 50%) — like a thermostat, set the target and AWS handles the rest
-2. **Step Scaling**: Add/remove based on CloudWatch alarms (e.g., "if CPU > 70%, add 2 instances")
-3. **Scheduled**: Time-based scaling — e.g. add capacity every weekday 9am, remove at 6pm
-4. **Predictive**: ML-based forecasting — scales *ahead* of demand instead of reacting to it
+1. **Simple Scaling**: The oldest/basic policy — one CloudWatch alarm triggers one fixed action (e.g. "add 1 instance"), then waits out the Cooldown period before reacting again
+2. **Target Tracking**: Maintain metric (e.g., CPU 50%) — like a thermostat, set the target and AWS handles the rest
+3. **Step Scaling**: Add/remove based on CloudWatch alarms (e.g., "if CPU > 70%, add 2 instances")
+4. **Scheduled**: Time-based scaling — e.g. add capacity every weekday 9am, remove at 6pm
+5. **Predictive**: ML-based forecasting — scales *ahead* of demand instead of reacting to it
 
 #### Target Tracking vs Step Scaling (the confusing pair)
 
@@ -140,7 +141,18 @@ Once configured: instance fails check → marked Unhealthy → ASG automatically
 - You call `CompleteLifecycleAction` to continue, or it times out (default 1 hour) and proceeds anyway
 - Example: don't let a new instance receive traffic until it's downloaded the latest build and passed a smoke test
 
-**Cooldown periods (default 300s)** — after a scaling activity, further scaling triggers are ignored for this duration, to prevent "flapping" (scale-out drops CPU → immediate scale-in → CPU rises again → loop). On by default; mainly applies to Step/Simple Scaling. Target Tracking uses its own smarter built-in logic, so manual tuning is rarely needed there.
+**Cooldown periods (default 300s)** — after a scaling activity, further scaling triggers are ignored for this duration, to prevent "flapping" (scale-out drops CPU → immediate scale-in → CPU rises again → loop).
+
+**Important: Cooldown does NOT apply equally to all policies:**
+
+| Policy | Uses classic Cooldown? | Uses instead |
+|--------|--------------------------|---------------|
+| Simple Scaling | **Yes** — only this policy type uses it | — |
+| Step Scaling | No | **Instance Warmup** |
+| Target Tracking | No | **Instance Warmup** |
+| Scheduled / Predictive | Not applicable | Directly sets capacity — no alarm to cool down from |
+
+Cooldown = a blunt global pause (freezes *all* scaling activity for the duration). Instance Warmup = a smarter alternative that just excludes newly-launched instances from metric calculations until they're contributing real load data, instead of freezing everything. Both have automatic defaults — no manual setup required to get reasonable behavior, though both can be tuned.
 
 ### Does Auto Scaling Apply to ECS, EKS, Lambda Too?
 
