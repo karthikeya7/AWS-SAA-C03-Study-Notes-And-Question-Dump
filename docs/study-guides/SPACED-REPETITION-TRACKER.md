@@ -30,6 +30,7 @@
 | DLQ/Destinations — only for async invocations | 03-Compute | | ☐ | ☐ | ☐ | ☐ | ☐ | Sync=caller sees error immediately. Async=fails silently without a DLQ/Destination to catch it |
 | ELB deregistration delay vs idle timeout | 03-Compute | | ☐ | ☐ | ☐ | ☐ | ☐ | Dereg delay(300s default)=finish in-flight requests before removal. Idle timeout(60s default)=close inactive connections |
 | Cross-zone load balancing default: ALB vs NLB | 03-Compute | | ☐ | ☐ | ☐ | ☐ | ☐ | ALB=always on, free. NLB=off by default, can cost extra when enabled |
+| User Data vs baking into AMI | 03-Compute | | ☐ | ☐ | ☐ | ☐ | ☐ | AMI=frozen at build time. User Data=supplied fresh at launch. Best practice: golden AMI + light User Data together |
 | | | | ☐ | ☐ | ☐ | ☐ | ☐ | |
 | | | | ☐ | ☐ | ☐ | ☐ | ☐ | |
 

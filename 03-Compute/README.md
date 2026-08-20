@@ -70,6 +70,38 @@ The "golden image" template used to launch an EC2 instance — includes the OS, 
 - **Exam trap:** AMIs are **region-specific**. If you need to launch the same instance setup in another region, you must explicitly **copy the AMI** to that region first — it doesn't exist there automatically.
 - Common use: build a "golden image" once (OS + your app + patches), then launch/scale identical instances from it — faster and more consistent than configuring each instance by hand.
 
+**How launching actually works:** an AMI is a frozen template, not something running. On launch, AWS creates a new EBS volume by copying the AMI's root snapshot, then boots a fresh instance from that volume. Every instance from the same AMI is an independent clone — changing a running instance never affects the AMI or other instances launched from it.
+
+### User Data — why not just bake everything into the AMI?
+
+**What it is:** a script (usually `#!/bin/bash`) you paste into the EC2 launch wizard (Advanced Details) that runs automatically **once, at first boot** — used to bootstrap the instance (install software, pull config, register with a service).
+
+**The key question: if you can bake a script into the AMI, why use User Data at all?** Timing is the difference — AMI code is baked in at **image creation time** (frozen, identical every launch). User Data is supplied at **launch time** (fresh, can differ per launch) even from the exact same AMI.
+
+**Analogy:** AMI = a printed recipe book, fixed once printed. User Data = a sticky note handed to the kitchen at the counter for this specific order ("no onions this time"). Reprinting the whole book for every small variation (rebuilding the AMI) is slow; a sticky note per order (User Data) is fast and flexible — same book, endless variations.
+
+**Tradeoff table:**
+
+| | Bake into AMI | User Data |
+|---|---|---|
+| Boot speed | Fast — nothing to install at runtime | Slower — script runs at every boot |
+| Consistency | Guaranteed identical every launch | Depends on the script + any external calls it makes |
+| Flexibility | None without rebuilding the AMI | High — change behavior per launch, no image rebuild |
+| Iteration speed | Slow (rebuild + redeploy AMI each time) | Fast (edit User Data, relaunch) |
+| Best for | Stuff that rarely changes (OS, app code) | Stuff that varies by launch (env config, secrets, registration) |
+
+**Best practice (and shows up on the exam): use both together.** Bake the heavy, unchanging stuff into a "Golden AMI" (OS, app code, dependencies) for fast, consistent boots. Use a small User Data script only for the last-mile, launch-specific bits (pull latest config from Parameter Store, set an env variable, register with a load balancer).
+
+**User Data vs Instance Metadata — don't confuse these:**
+
+| | User Data | Instance Metadata |
+|---|---|---|
+| What it is | A script **you write** to configure the instance at launch | Info **AWS provides** about the running instance |
+| Contains | Your bootstrap commands | Instance ID, IP, security groups, IAM role credentials, etc. |
+| Retrieved via | `http://169.254.169.254/latest/user-data` | `http://169.254.169.254/latest/meta-data/` |
+
+**Memory hook:** User Data = what the instance should **do** when it wakes up. Metadata = what AWS knows **about** the instance.
+
 ### Instance Metadata Service (IMDSv2) — high-yield security topic
 
 Every EC2 instance can query `http://169.254.169.254/latest/meta-data/` from *inside* the instance to get info about itself (instance ID, IP, security groups, and — critically — **temporary IAM role credentials**).
