@@ -193,20 +193,32 @@ The traffic cop that sits in front of your instances/containers and spreads inco
 
 ## 4. AWS Lambda
 
+Run your code without managing any server. Upload a function, AWS runs it only when triggered, and you pay only for the milliseconds it actually executes.
+
+**Analogy:** EC2 is a restaurant — always open, staffed, costing money whether customers show up or not. Lambda is a vending machine — dormant and free when idle, only "does work" the instant someone presses the button.
+
 ### Limits
-- Max execution: **15 minutes**
-- Memory: 128 MB - 10 GB
-- /tmp storage: 512 MB - 10 GB
-- Concurrent executions: 1,000 (default)
+
+| Limit | Value | What it means in practice |
+|-------|-------|-----------------------------|
+| Max execution time | 15 minutes | Needs longer? Wrong tool — use EC2/ECS/Batch instead |
+| Memory | 128 MB - 10 GB | You choose this; CPU scales automatically with memory |
+| /tmp storage | 512 MB - 10 GB | Temporary scratch disk, wiped after the function ends |
+| Concurrent executions | 1,000 (default, raisable) | Account-wide cap on simultaneous running copies, not per-function |
 
 ### Invocation Types
-1. **Synchronous**: API Gateway, CLI
-2. **Asynchronous**: S3, SNS, EventBridge
-3. **Event Source Mapping**: SQS, Kinesis, DynamoDB Streams
+
+| Type | How it works | Examples | Analogy |
+|------|----------------|----------|---------|
+| **Synchronous** | Caller waits for the response | API Gateway, CLI | Asking a question, waiting for the answer |
+| **Asynchronous** | Caller fires and moves on; Lambda processes in background with auto-retries | S3, SNS, EventBridge | Dropping a letter in a mailbox |
+| **Event Source Mapping** | Lambda actively polls a stream/queue itself | SQS, Kinesis, DynamoDB Streams | Lambda checks the mailbox itself on a schedule |
 
 ### Pricing
-- $0.20 per 1M requests
-- $0.00001667 per GB-second
+- **$0.20 per 1M requests** — small flat fee per invocation
+- **$0.00001667 per GB-second** — the real cost driver: (memory) × (duration). More memory or longer runtime = more cost.
+
+**Rule of thumb:** cheapest for short, infrequent, event-driven tasks. Constant or long-running workloads usually become cheaper on EC2/Fargate.
 
 ---
 
