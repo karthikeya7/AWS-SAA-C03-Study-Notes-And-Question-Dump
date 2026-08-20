@@ -67,17 +67,59 @@ Controls the physical arrangement of EC2 instances relative to each other — fo
 
 ## 2. Auto Scaling
 
+Automatically adds/removes EC2 instances based on real demand — never paying for idle servers, never getting crushed by unexpected traffic. Cost note: **Auto Scaling itself is free** — you only pay for the EC2 instances (and attached EBS/ELB) it launches, same as if you'd launched them manually.
+
+### Auto Scaling Group (ASG)
+
+The container/manager that ties everything together — you don't scale individual EC2 instances directly, you create an ASG and it manages a *group* of identical instances for you.
+
+**Core components:**
+
+| Component | What it defines |
+|-----------|-----------------|
+| **Launch Template** (or older Launch Configuration) | The "recipe" — AMI, instance type, key pair, security groups, user data. Every instance in the group is a clone of this |
+| **Min / Desired / Max capacity** | The boundaries — never below Min, never above Max, tries to sit at Desired |
+| **VPC + Subnets/AZs** | Which subnets/AZs instances launch into — this is how it spreads instances for high availability |
+| **Scaling policies** | The rules for *when* to change capacity (below) |
+| **Health checks** | Rules for what counts as "unhealthy" and needs replacing |
+| **Lifecycle hooks** | Optional pause points during launch/terminate |
+| **Load balancer attachment (optional)** | New instances auto-register with the ALB/NLB; terminated ones auto-deregister |
+
+**What the ASG does continuously, without manual intervention:**
+1. **Maintains capacity** — replaces crashed/unhealthy instances automatically, even with zero traffic change (self-healing, not just scaling)
+2. **Scales based on policies** — adjusts Desired capacity per the rules below
+3. **Distributes across AZs** — spreads instances evenly for fault tolerance
+4. **Registers/deregisters with load balancer** — automatic if attached
+
+**Analogy:** the ASG is a **restaurant manager**, not the wait staff. Launch Template = the training manual every new hire follows identically. Min/Desired/Max = "always have at least 2 staff, ideally 4, never more than 10." Scaling policies = the manager's rule book for calling in more staff. Health checks = the manager noticing someone's sick and calling in a replacement — automatically, without you personally hiring/firing each person.
+
 ### Scaling Policies
-1. **Target Tracking**: Maintain metric (e.g., CPU 50%)
-2. **Step Scaling**: Add/remove based on alarms
-3. **Scheduled**: Time-based scaling
-4. **Predictive**: ML-based forecasting
+1. **Target Tracking**: Maintain metric (e.g., CPU 50%) — like a thermostat, set the target and AWS handles the rest
+2. **Step Scaling**: Add/remove based on CloudWatch alarms (e.g., "if CPU > 70%, add 2 instances")
+3. **Scheduled**: Time-based scaling — e.g. add capacity every weekday 9am, remove at 6pm
+4. **Predictive**: ML-based forecasting — scales *ahead* of demand instead of reacting to it
 
 ### Key Concepts
-- Min/Desired/Max capacity
-- Health checks
-- Lifecycle hooks
-- Cooldown periods (default 300s)
+
+**Min/Desired/Max capacity** — the boundaries: never fewer than Min, never more than Max, tries to stay at Desired.
+
+**Health checks** — checking itself is automatic once the ASG is running, but you choose the source:
+
+| Type | What it checks | Enabled by default? |
+|------|----------------|----------------------|
+| EC2 status checks | Is the instance/hardware itself running | Yes — always on by default |
+| ELB health checks | Is the app actually responding correctly (e.g. HTTP 200 on `/health`) — deeper than "is the VM alive" | No — must explicitly enable if behind a load balancer |
+| Custom health checks | Your own script/Lambda reports health via `SetInstanceHealth` API | No — fully manual |
+
+Once configured: instance fails check → marked Unhealthy → ASG automatically terminates it and launches a replacement to restore Desired capacity. No manual action needed. You must, however, choose which check type and (for ELB checks) build the actual health endpoint in your app — AWS doesn't invent that for you.
+
+**Lifecycle hooks** — a pause button during instance launch or termination, giving you time to run custom actions before the instance goes live (or before it's destroyed). **Opt-in, not automatic** — by default there's no pause.
+- Instance enters `Pending:Wait` (launch) or `Terminating:Wait` (termination)
+- Your custom logic runs (e.g. Lambda/script — install software, run smoke tests, drain connections, back up logs)
+- You call `CompleteLifecycleAction` to continue, or it times out (default 1 hour) and proceeds anyway
+- Example: don't let a new instance receive traffic until it's downloaded the latest build and passed a smoke test
+
+**Cooldown periods (default 300s)** — after a scaling activity, further scaling triggers are ignored for this duration, to prevent "flapping" (scale-out drops CPU → immediate scale-in → CPU rises again → loop). On by default; mainly applies to Step/Simple Scaling. Target Tracking uses its own smarter built-in logic, so manual tuning is rarely needed there.
 
 ---
 
