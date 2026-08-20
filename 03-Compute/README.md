@@ -251,6 +251,16 @@ Run your code without managing any server. Upload a function, AWS runs it only w
 
 **Analogies:** Reserved Concurrency = reserving 100 VIP parking spots in a shared lot — always available for the VIP, but the VIP also can never use more than 100. Provisioned Concurrency = a valet who already has your car running and pulled up before you arrive, instead of only starting the search for your keys once you show up (cold start).
 
+**Important: Reserved Concurrency is per-function, not shared across functions.** Each function's reserved number is its own private slice — 56 functions with reserved concurrency do NOT share one combined pool. Example:
+```
+Account total: 1,000
+Function A reserved = 200  → 200 exclusively for A
+Function B reserved = 100  → 100 exclusively for B
+Unreserved pool left = 1,000 - 200 - 100 = 700  → shared only by functions WITHOUT reserved concurrency set
+```
+
+**Also: the reservation is permanent, not usage-based.** Function A's 200 slots are removed from the shared pool the moment it's configured — even if A is completely idle and never invoked. It doesn't "give back" capacity when unused, because the whole point is a guarantee that's always ready. AWS always keeps at least 100 unreserved for the rest of the account.
+
 ### Dead Letter Queues (DLQ) & Destinations
 
 Only relevant for **async** invocations (S3, SNS, EventBridge triggers). If the function fails after automatic retries, the failed event needs somewhere to go:
